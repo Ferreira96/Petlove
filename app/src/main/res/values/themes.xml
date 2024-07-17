@@ -1,0 +1,11 @@
+<resources>
+    <!-- Base application theme -->
+    <style name="Theme.PetLove" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Usar o drawable de gradiente como fundo da janela -->
+        <item name="android:windowBackground">@drawable/gradient_background</item>
+        <!-- Tornar a barra de status transparente -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <!-- Tornar a barra de navegação transparente -->
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+</resources>

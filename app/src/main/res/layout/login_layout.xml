@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".LoginActivity">
+
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/atma_semibold"
+        android:hint="@string/password"
+        android:imeActionLabel="@string/action_sign_in"
+        android:imeOptions="actionDone"
+        android:inputType="textPassword"
+        android:selectAllOnFocus="true"
+        android:textColor="#CC0045"
+        android:textColorLink="#E91E63"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/username" />
+
+    <TextView
+        android:id="@+id/TxtView_Sem_Cadastro"
+        android:layout_width="206dp"
+        android:layout_height="29dp"
+        android:fontFamily="@font/atma_semibold"
+        android:textColor="#E91E63"
+        android:textSize="14sp"
+        tools:layout_editor_absoluteX="18dp"
+        tools:layout_editor_absoluteY="299dp"
+        android:onClick="IR PARA TELA CADASTRO"
+        tools:text="@string/sem_cadastro" />
+
+    <EditText
+        android:id="@+id/username"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="148dp"
+        android:fontFamily="@font/atma_semibold"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:selectAllOnFocus="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#CC0045"
+        android:textColorLink="#E91E63"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/TxtView_Esqueci_Senha"
+        android:layout_width="206dp"
+        android:layout_height="29dp"
+        android:fontFamily="@font/atma_semibold"
+        android:textColor="#E91E63"
+        android:textSize="14sp"
+        tools:layout_editor_absoluteX="17dp"
+        tools:layout_editor_absoluteY="277dp"
+        android:onClick="IR PARA TELA ESQUECI MINHA SENHA"
+        tools:text="@string/esqueci_senha" />
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="112dp"
+        android:layout_height="58dp"
+        android:layout_gravity="start"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="64dp"
+        android:background="@drawable/gradient_background"
+        android:enabled="true"
+        android:fontFamily="@font/atma_semibold"
+        android:text="@string/action_sign_in"
+        android:textColor="#FFF8EC"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.514"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        app:layout_constraintVertical_bias="0.57" />
+
+    <View
+        android:id="@+id/view_cabeçalho"
+        android:layout_width="match_parent"
+        android:layout_height="99dp"
+        android:background="@drawable/gradient_background"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="-413dp"
+        tools:layout_editor_absoluteY="-28dp" />
+
+    <TextView
+        android:id="@+id/TxtView_Login_Titulo"
+        android:layout_width="117dp"
+        android:layout_height="68dp"
+        android:fontFamily="@font/atma_semibold"
+        android:text="Login"
+        android:textColor="#FFF7E0"
+        android:textSize="48sp"
+        tools:layout_editor_absoluteX="140dp"
+        tools:layout_editor_absoluteY="-2dp"
+        tools:text="Login" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="86dp"
+        android:layout_height="68dp"
+        android:src="@drawable/petlove_icon_trans"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="-5dp" />
+
+    <View
+        android:id="@+id/view_rodapé"
+        android:layout_width="1000dp"
+        android:layout_height="90dp"
+        android:background="@drawable/gradient_background"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="-297dp"
+        tools:layout_editor_absoluteY="519dp" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
