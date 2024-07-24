@@ -1,25 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:context=".SplashActivity"
+    android:gravity="center"
     android:background="@drawable/gradient_background">
 
-    <ImageView
-        android:id="@+id/dog_image"
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:orientation="vertical">
 
-        android:src="@drawable/petlove_icon_trans"
-        android:contentDescription="@string/descricao_de_icone"/>
+        <ImageView
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/petlove_icon"
+            android:adjustViewBounds="true"/>
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/pet_love_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/dog_image"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:textColor="@android:color/white"
-        android:textSize="24sp"
-        android:textStyle="bold"/>
 </RelativeLayout>

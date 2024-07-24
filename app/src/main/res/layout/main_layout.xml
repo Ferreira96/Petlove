@@ -1,0 +1,224 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Cabeçalho -->
+    <RelativeLayout
+        android:id="@+id/header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gradient_background"
+        android:padding="16dp"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/header_icon"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/petlove_icon"
+            android:layout_marginEnd="16dp"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/atma_semibold"
+            android:text="O que gostaria de fazer?"
+            android:textSize="25sp"
+            android:textColor="@android:color/white"
+            android:layout_toEndOf="@id/header_icon"
+            android:layout_centerVertical="true" />
+    </RelativeLayout>
+
+    <!-- Centro (Tela em Si) -->
+    <RelativeLayout
+        android:id="@+id/main_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="16dp"
+        app:layout_constraintBottom_toTopOf="@id/footer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header">
+
+        <!-- Meus Pets -->
+        <RelativeLayout
+            android:id="@+id/layout_meus_pets"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+
+            <ImageView
+                android:id="@+id/ImgView_MeusPets"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/Meus_Pets" />
+
+            <TextView
+                android:id="@+id/TxtView_MeusPets"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/ImgView_MeusPets"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="29dp"
+                android:layout_toEndOf="@id/ImgView_MeusPets"
+                android:fontFamily="@font/atma_semibold"
+                android:text="Meus Pets"
+                android:textAlignment="center"
+                android:textColor="@color/rosa"
+                android:textSize="28dp" />
+        </RelativeLayout>
+
+        <!-- Processos de Adoção -->
+        <RelativeLayout
+            android:id="@+id/layout_processos_adocao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_meus_pets"
+            android:layout_marginTop="16dp">
+
+            <ImageView
+                android:id="@+id/ImgView_ProcessosAdocao"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/Processos_de_Adoção" />
+
+            <TextView
+                android:id="@+id/TxtView_ProcessosAdocao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/ImgView_ProcessosAdocao"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="26dp"
+                android:layout_toEndOf="@id/ImgView_ProcessosAdocao"
+                android:fontFamily="@font/atma_semibold"
+                android:text="Processos de Adoção"
+                android:textAlignment="center"
+                android:textColor="@color/rosa"
+                android:textSize="28dp" />
+        </RelativeLayout>
+
+        <!-- Processos de Lar -->
+        <RelativeLayout
+            android:id="@+id/layout_processos_lar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_processos_adocao"
+            android:layout_marginTop="16dp">
+
+            <ImageView
+                android:id="@+id/ImgView_ProcessosLar"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/Processos_de_Lar" />
+
+            <TextView
+                android:id="@+id/TxtView_ProcessosLar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/ImgView_ProcessosLar"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="27dp"
+                android:layout_toEndOf="@id/ImgView_ProcessosLar"
+                android:fontFamily="@font/atma_semibold"
+                android:text="Processos de Lar"
+                android:textAlignment="center"
+                android:textColor="@color/rosa"
+                android:textSize="28dp" />
+        </RelativeLayout>
+
+        <!-- Doações -->
+        <RelativeLayout
+            android:id="@+id/layout_doacoes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_processos_lar"
+            android:layout_marginTop="16dp"
+            >
+
+            <ImageView
+                android:id="@+id/ImgView_Doacoes"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/Minhas_Doações" />
+
+            <TextView
+                android:id="@+id/TxtView_Doacoes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/ImgView_Doacoes"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="26dp"
+                android:layout_toEndOf="@id/ImgView_Doacoes"
+                android:fontFamily="@font/atma_semibold"
+                android:text="Minhas Doações"
+                android:textAlignment="center"
+                android:textColor="@color/rosa"
+                android:textSize="28dp" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <!-- Rodapé -->
+    <RelativeLayout
+        android:id="@+id/footer"
+        android:layout_width="0dp"
+        android:layout_height="120dp"
+        android:background="@drawable/gradient_background"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/ImgView_SAIR"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="94dp"
+            android:src="@drawable/Patinha_SAIR" />
+
+        <TextView
+            android:id="@+id/TxtView_SAIR"
+            android:layout_width="95dp"
+            android:layout_height="50dp"
+            android:layout_alignTop="@id/ImgView_SAIR"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="22dp"
+            android:layout_marginLeft="182dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="154dp"
+            android:layout_toEndOf="@+id/ImgView_SAIR"
+            android:fontFamily="@font/atma_semibold"
+            android:text="SAIR"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="28dp" />
+
+        <TextView
+            android:id="@+id/TxtView_Direitos"
+            android:layout_width="219dp"
+            android:layout_height="43dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="90dp"
+            android:layout_marginLeft="182dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="86dp"
+            android:layout_marginBottom="-13dp"
+            android:fontFamily="@font/atma_semibold"
+            android:text="PetLove ₢ - Todos os Direitos Reservados"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="10dp" />
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
