@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cadpet"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- TEXTO  -->
+
+    <TextView
+        android:id="@+id/tx_nome_dog"
+        android:text="NOME"
+        android:gravity="center"
+
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.1" />
+
+    <TextView
+        android:id="@+id/tx_idade_dog"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+
+        android:gravity="center"
+        android:text="IDADE"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.315"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_dog" />
+
+    <TextView
+        android:id="@+id/tx_peso_dog"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+
+        android:gravity="center"
+        android:text="PESO"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/tx_idade_dog"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_dog" />
+
+    <TextView
+        android:id="@+id/tx_nome_dono"
+        android:text="NOME"
+        android:gravity="center"
+
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_dono"
+        />
+
+    <TextView
+        android:id="@+id/tx_contato_dono"
+        android:text="CONTATO"
+        android:gravity="center"
+
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tx_nome_dono" />
+
+
+
+    <!-- IMAGEM  -->
+    <ImageView
+        android:id="@+id/imageView_dog"
+        android:src="@drawable/dog01"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tx_nome_dog" />
+
+    <ImageView
+        android:id="@+id/imageView_dono"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/avatar01"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_dog" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

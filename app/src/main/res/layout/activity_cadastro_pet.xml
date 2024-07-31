@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cadpet"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- TEXTO  -->
+    <TextView
+        android:id="@+id/textView"
+        android:text="CADASTRAR PET"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tx_nome"
+        android:text="NOME:"
+
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4"/>
+
+    <TextView
+        android:id="@+id/tx_idade"
+        android:text="IDADE:"
+
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tx_nome" />
+
+    <TextView
+        android:id="@+id/tx_peso"
+        android:text="PESO:"
+
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tx_idade" />
+
+    <!-- LABEL  -->
+    <EditText
+        android:id="@+id/lb_nome"
+        android:text="nome"
+        android:inputType="text"
+
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:ems="10"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tx_nome"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4" />
+
+    <EditText
+        android:id="@+id/lb_idade"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+
+        android:ems="10"
+        android:inputType="text"
+        android:text="anos"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tx_nome"
+        app:layout_constraintTop_toBottomOf="@+id/lb_nome" />
+
+    <EditText
+        android:id="@+id/lb_peso"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+
+        android:ems="10"
+        android:inputType="text"
+        android:text="kg"
+
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tx_nome"
+        app:layout_constraintTop_toBottomOf="@+id/lb_idade" />
+
+    <!-- CHECK BOX  -->
+    <CheckBox
+        android:id="@+id/tx_busca_lar"
+        android:text="BUSCA LAR"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tx_peso" />
+
+    <CheckBox
+        android:id="@+id/tx_busca_doacao"
+        android:text="BUSCA DOAÇÃO"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tx_busca_lar" />
+
+    <!-- IMAGEM  -->
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toTopOf="@+id/lb_nome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        android:src="@drawable/dog01"/>
+
+    <!-- BOTÃO  -->
+    <Button
+        android:id="@+id/bt_salvar"
+        android:layout_width="230dp"
+
+        android:layout_height="60dp"
+        android:text="SALVAR"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tx_busca_doacao"
+
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
