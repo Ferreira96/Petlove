@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "6555395033",
+    "project_id": "petlove-ifspara",
+    "storage_bucket": "petlove-ifspara.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:6555395033:android:ac52ae4ab50a61f3056fc8",
+        "android_client_info": {
+          "package_name": "com.example.petlove"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMVMwJbnj4Ow3JrRVSGgPnIQEp8QBM8xQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
