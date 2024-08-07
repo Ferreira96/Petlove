@@ -49,7 +49,7 @@
     <!-- LABEL  -->
     <EditText
         android:id="@+id/lb_usuario"
-        android:text="usuario"
+        android:text=""
         android:inputType="text"
 
         android:layout_width="250dp"
@@ -69,7 +69,7 @@
 
         android:ems="10"
         android:inputType="text"
-        android:text="senha"
+        android:text=""
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tx_senha"
@@ -89,6 +89,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lb_senha"
         app:layout_constraintVertical_bias="0.20" />
+
+    <TextView
+        android:id="@+id/bt_cadastro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CADASTRO"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_entrar" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
