@@ -67,7 +67,7 @@
         android:text="CONTATO"
         android:gravity="center"
 
-        android:layout_width="100dp"
+        android:layout_width="200dp"
         android:layout_height="50dp"
 
         app:layout_constraintEnd_toEndOf="parent"

@@ -1,5 +1,6 @@
 package com.example.petlove
 
+import Pet
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -11,6 +12,11 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.FirebaseDatabase
+import getPets
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class AdocaoEDoacaoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,18 +29,24 @@ class AdocaoEDoacaoActivity : AppCompatActivity() {
         val adocao = intent.getBooleanExtra("adocao", false)
         val doacao = intent.getBooleanExtra("doacao", false)
 
-        if(adocao){
-            findViewById<TextView>(R.id.titulo).setText("-  ADOÇÃO  -")
-        }
-        else if (doacao){
-            findViewById<TextView>(R.id.titulo).setText("-  DOAÇÃO  -")
+        if (adocao) {
+            findViewById<TextView>(R.id.titulo).text = "-  ADOÇÃO  -"
+        } else if (doacao) {
+            findViewById<TextView>(R.id.titulo).text = "-  DOAÇÃO  -"
         }
 
-        //MANIPULA LISTA DE PETS
-        val listaPetAdocaoView = findViewById<RecyclerView>(R.id.listapetadocao)
-        listaPetAdocaoView.adapter = ListaPetAdocao(this, GetPetsTESTE().getPetsList(adocao, doacao))//MOCK
-        listaPetAdocaoView.layoutManager = LinearLayoutManager(this)
+        // Inicialize o Firebase e recupere o objeto Pet
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true)
 
+        // Recupera a lista de pets de forma assíncrona
+        CoroutineScope(Dispatchers.Main).launch {
+            val pets = getPets()
+
+            // Atualiza o adapter da RecyclerView com a lista de pets
+            val listaPetAdocaoView = findViewById<RecyclerView>(R.id.listapetadocao)
+            listaPetAdocaoView.adapter = ListaPetAdocao(this@AdocaoEDoacaoActivity, pets)
+            listaPetAdocaoView.layoutManager = LinearLayoutManager(this@AdocaoEDoacaoActivity)
+        }
     }
 }
 
@@ -50,10 +62,10 @@ class ListaPetAdocao(
             nome.text = pet.nome
 
             val idade = itemView.findViewById<TextView>(R.id.tx_idade)
-            idade.text = pet.idade
+            idade.text = pet.idade.toString()
 
             val peso = itemView.findViewById<TextView>(R.id.tx_peso)
-            peso.text = pet.peso
+            peso.text = pet.peso.toString()
 
             // AÇÃO DO BOTÃO [VER PERFIL]
             val btPetPerfil = itemView.findViewById<Button>(R.id.bt_petperfil)

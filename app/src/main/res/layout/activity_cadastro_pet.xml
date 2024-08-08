@@ -97,7 +97,7 @@
 
     <!-- CHECK BOX  -->
     <CheckBox
-        android:id="@+id/tx_busca_lar"
+        android:id="@+id/cb_adocao"
         android:text="BUSCA LAR"
 
         android:layout_width="match_parent"
@@ -108,7 +108,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tx_peso" />
 
     <CheckBox
-        android:id="@+id/tx_busca_doacao"
+        android:id="@+id/cb_doacao"
         android:text="BUSCA DOAÇÃO"
 
         android:layout_width="match_parent"
@@ -116,7 +116,7 @@
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tx_busca_lar" />
+        app:layout_constraintTop_toBottomOf="@+id/cb_adocao" />
 
     <!-- IMAGEM  -->
     <ImageView
@@ -140,7 +140,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tx_busca_doacao"
+        app:layout_constraintTop_toBottomOf="@+id/cb_doacao"
 
         />
 

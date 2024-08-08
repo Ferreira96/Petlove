@@ -17,6 +17,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth /**AUTENTICAÇÃO*/
     private var isLogged = false
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -53,6 +54,7 @@ class LoginActivity : AppCompatActivity() {
         btCadastro.setOnClickListener {
             val intent = Intent(this, CadastroActivity::class.java)
             startActivity(intent)
+            startActivity(intent)
         }
     }
 
@@ -63,8 +65,6 @@ class LoginActivity : AppCompatActivity() {
                 isLogged = true
                 Log.d("EmailAndPassword","signInUserComEmailESenha-Sucesso")
                 Toast.makeText(baseContext, "Login realizado com sucesso", Toast.LENGTH_SHORT).show()
-
-
                 //val user = auth.currentUser
             }else{
                 Log.d("EmailAndPassword","signInUserComEmailESenha-Falha", task.exception)

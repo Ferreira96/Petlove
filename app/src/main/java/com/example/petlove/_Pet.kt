@@ -1,39 +1,72 @@
-package com.example.petlove
+import android.util.Log
+import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.tasks.await
 
-class Pet (
-    val id:         Int,
-    val usuario_id: Int,
-    val nome:       String,
-    val idade:      String,
-    val peso:       String,
-    val adocao:     Boolean = false,
-    val doacao:     Boolean = false
+data class Pet(
+    val id: Int = 0,
+    val usuario_id: Int = 0,
+    val nome: String = "",
+    val idade: Int = 0,
+    val peso: Int = 0,
+    val adocao: Boolean = false,
+    val doacao: Boolean = false
 )
 
-//DADOS PARA TESTE//////////////////////////////////////////////////////////////////////////////////
-class GetPetsTESTE {
-    val pets: List<Pet> = listOf(
-        Pet(0, 0,"Bella"  , "2 anos", "4kg" , true , false),
-        Pet(1, 1,"Max"    , "3 anos", "6kg" , true , false),
-        Pet(2, 2,"Charlie", "2 anos", "3kg" , true , false),
-        Pet(3, 2,"Milo"   , "4 anos", "7kg" , false, true),
-        Pet(4, 3,"Luna"   , "2 anos", "5kg" , false, true),
-        Pet(5, 3,"Pithuca", "8 anos", "15kg", true , true)
-    )
+suspend fun getPet(id: Int): Pet? {
+    val db = FirebaseFirestore.getInstance()
+    val petRef = db.collection("pets").document(id.toString())
 
-    fun getPetsList(adocao: Boolean, doacao: Boolean): List<Pet> {
-        if(adocao){
-            val petsAdocaoLista = pets.filter { it.adocao == true }
-            return petsAdocaoLista
+    return try {
+        val document = petRef.get().await()
+        if (document.exists()) {
+            document.toObject(Pet::class.java).also {
+                Log.d("PetData", "Pet data: $it")
+            }
+        } else {
+            Log.d("PetData", "No such document!")
+            null
         }
-        else if(doacao){
-            val petsDoacaoLista = pets.filter { it.doacao == true }
-            return petsDoacaoLista
-        }
-        return pets
+    } catch (exception: Exception) {
+        Log.w("PetData", "Error getting document.", exception)
+        null
     }
+}
 
-    fun getPet(id: Int): Pet? {
-        return pets.find { it.id == id }
+suspend fun getPets(): List<Pet> {
+    val db = FirebaseFirestore.getInstance()
+
+    return try {
+        val querySnapshot = db.collection("pets").get().await()
+        querySnapshot.documents.mapNotNull { document ->
+            document.toObject(Pet::class.java)
+        }.also {
+            Log.d("PetData", "Total pets: ${it.size}")
+        }
+    } catch (exception: Exception) {
+        Log.w("PetData", "Error getting documents.", exception)
+        emptyList()
+    }
+}
+
+//PARA UTILIZAR OS METODOS
+//CoroutineScope(Dispatchers.Main).launch {}
+
+suspend fun insertPet(pet: Pet): Boolean {
+    val db = FirebaseFirestore.getInstance()
+    return try {
+        // Se o ID do pet for 0, gera um novo ID para o documento
+        val petRef = if (pet.id == 0) {
+            db.collection("pets").document() // Gera um ID automático
+        } else {
+            db.collection("pets").document(pet.id.toString())
+        }
+
+        // Adiciona ou atualiza o documento
+        petRef.set(pet).await()
+        Log.d("PetData", "Pet inserted with ID: ${petRef.id}")
+        true
+    } catch (exception: Exception) {
+        Log.w("PetData", "Error inserting document.", exception)
+        false
     }
 }
