@@ -1,11 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <!-- TEXTO  -->
+
+    <EditText
+        android:id="@+id/lb_cad_celular"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+
+        android:ems="10"
+
+        android:inputType="text"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toEndOf="@+id/tx_cad_senha"
+        app:layout_constraintTop_toBottomOf="@+id/lb_cad_nome" />
+
+    <TextView
+        android:id="@+id/tx_cad_celular"
+        android:text="CELULAR:"
+
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tx_cad_nome" />
+
+    <EditText
+        android:id="@+id/lb_cad_nome"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+
+        android:ems="10"
+        android:inputType="text"
+
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toEndOf="@+id/tx_cad_senha"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tx_cad_nome"
+        android:text="NOME:"
+
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/tx_titulo"
         android:text="CADASTRO"
@@ -25,11 +79,10 @@
 
         android:layout_width="100dp"
         android:layout_height="50dp"
+        android:gravity="center"
 
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4" />
+        app:layout_constraintTop_toBottomOf="@+id/tx_cad_celular" />
 
     <TextView
         android:id="@+id/tx_cad_senha"
@@ -37,6 +90,7 @@
 
         android:layout_width="100dp"
         android:layout_height="50dp"
+        android:gravity="center"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tx_cad_email" />
@@ -44,18 +98,16 @@
     <!-- LABEL  -->
     <EditText
         android:id="@+id/lb_cad_email"
-        android:text=""
-        android:inputType="text"
-
         android:layout_width="250dp"
         android:layout_height="50dp"
-        android:ems="10"
 
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:ems="10"
+        android:inputType="text"
+        android:text=""
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tx_cad_email"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4" />
+        app:layout_constraintTop_toBottomOf="@+id/lb_cad_celular" />
 
     <EditText
         android:id="@+id/lb_cad_senha"
@@ -73,15 +125,15 @@
     <!-- BOTÃO  -->
     <Button
         android:id="@+id/bt_cadastro"
-        android:text="CADASTRAR"
-
         android:layout_width="230dp"
+
         android:layout_height="60dp"
+        android:text="CADASTRAR"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lb_cad_senha"
-        app:layout_constraintVertical_bias="0.20" />
+        app:layout_constraintTop_toBottomOf="@+id/lb_cad_senha"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

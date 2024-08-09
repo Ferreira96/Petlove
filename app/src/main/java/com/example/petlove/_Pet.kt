@@ -3,7 +3,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 
 data class Pet(
-    val id: Int = 0,
+    var id: Int = 0,
     val usuario_id: Int = 0,
     val nome: String = "",
     val idade: Int = 0,
@@ -53,20 +53,31 @@ suspend fun getPets(): List<Pet> {
 
 suspend fun insertPet(pet: Pet): Boolean {
     val db = FirebaseFirestore.getInstance()
+
     return try {
-        // Se o ID do pet for 0, gera um novo ID para o documento
-        val petRef = if (pet.id == 0) {
-            db.collection("pets").document() // Gera um ID automático
-        } else {
-            db.collection("pets").document(pet.id.toString())
-        }
+        val maiorId = getMaiorIdPet() ?: 0
+        val novoId = maiorId + 1
+
+        pet.id = novoId
+
+        // Adiciona o novo usuário ao Firestore
+        db.collection("pets").document(novoId.toString()).set(pet).await()
 
         // Adiciona ou atualiza o documento
-        petRef.set(pet).await()
-        Log.d("PetData", "Pet inserted with ID: ${petRef.id}")
+        Log.d("PetData", "Pet inserted with ID: ${novoId}")
         true
     } catch (exception: Exception) {
         Log.w("PetData", "Error inserting document.", exception)
         false
+    }
+}
+
+suspend fun getMaiorIdPet(): Int? {
+    val pets = getPets()
+
+    return if (pets.isNotEmpty()) {
+        pets.maxByOrNull { it.id }?.id
+    } else {
+        null
     }
 }

@@ -1,5 +1,6 @@
 package com.example.petlove
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -12,11 +13,8 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 
-
 class LoginActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth /**AUTENTICAÇÃO*/
-    private var isLogged = false
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,12 +38,6 @@ class LoginActivity : AppCompatActivity() {
 
             if(!lb_usuario_login.equals("") or !lb_senha_login.equals("")){
                 signInWithUserComEmailESenha(lb_usuario_login, lb_senha_login)
-                if(isLogged){
-                    val intent = Intent(this, HomeActivity::class.java)
-                    startActivity(intent)
-                }
-            }else{
-                Toast.makeText(baseContext, "email ou senha invalidos", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -62,14 +54,19 @@ class LoginActivity : AppCompatActivity() {
     private fun signInWithUserComEmailESenha(email: String, password: String){
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener{ task->
             if(task.isSuccessful){
-                isLogged = true
-                Log.d("EmailAndPassword","signInUserComEmailESenha-Sucesso")
+                // Adiciona ao SharedPreferences
+                val sharedPreferences = getSharedPreferences("PersistenciaLogin", Context.MODE_PRIVATE)
+                val editor = sharedPreferences.edit()
+                editor.putString("USER_EMAIL", email)
+                editor.putBoolean("IS_LOGGED", true)
+                editor.apply()
+
+                val intent = Intent(this, HomeActivity::class.java)
+                startActivity(intent)
+
                 Toast.makeText(baseContext, "Login realizado com sucesso", Toast.LENGTH_SHORT).show()
-                //val user = auth.currentUser
             }else{
-                Log.d("EmailAndPassword","signInUserComEmailESenha-Falha", task.exception)
                 Toast.makeText(baseContext, "email ou senha invalidos", Toast.LENGTH_SHORT).show()
-                isLogged = false
             }
         }
     }

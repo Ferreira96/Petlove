@@ -26,6 +26,7 @@
 
         android:layout_width="100dp"
         android:layout_height="50dp"
+        android:gravity="center"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,6 +39,7 @@
 
         android:layout_width="100dp"
         android:layout_height="50dp"
+        android:gravity="center"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tx_nome" />
@@ -48,6 +50,7 @@
 
         android:layout_width="100dp"
         android:layout_height="50dp"
+        android:gravity="center"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tx_idade" />
@@ -55,7 +58,7 @@
     <!-- LABEL  -->
     <EditText
         android:id="@+id/lb_nome"
-        android:text="nome"
+        android:text=""
         android:inputType="text"
 
         android:layout_width="250dp"
@@ -75,7 +78,7 @@
 
         android:ems="10"
         android:inputType="text"
-        android:text="anos"
+        android:text=""
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tx_nome"
@@ -88,7 +91,7 @@
 
         android:ems="10"
         android:inputType="text"
-        android:text="kg"
+        android:text=""
 
 
         app:layout_constraintEnd_toEndOf="parent"
@@ -100,8 +103,9 @@
         android:id="@+id/cb_adocao"
         android:text="BUSCA LAR"
 
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -111,7 +115,7 @@
         android:id="@+id/cb_doacao"
         android:text="BUSCA DOAÇÃO"
 
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
         app:layout_constraintEnd_toEndOf="parent"
