@@ -26,9 +26,11 @@ class LoginActivity : AppCompatActivity() {
         var lb_usuario  = findViewById<EditText>(R.id.lb_usuario)
         var lb_senha  = findViewById<EditText>(R.id.lb_senha)
 
+        /*
         //MANIPULA TX_TITULO
         var tx_titulo  = findViewById<TextView>(R.id.tx_titulo)
         tx_titulo.setText("-  PETLOVE  -")
+         */
 
         //AÇÃO DO BOTÃO [ENTRAR]
         val btEntrar: Button = findViewById(R.id.bt_entrar)

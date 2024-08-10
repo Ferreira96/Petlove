@@ -61,7 +61,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tx_titulo"
+        android:id="@+id/tx_titulo_cad"
         android:text="CADASTRO"
 
         android:layout_width="wrap_content"
