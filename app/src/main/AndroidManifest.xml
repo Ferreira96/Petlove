@@ -31,6 +31,7 @@
         <activity android:name=".AdocaoEDoacaoActivity"></activity>
         <activity android:name=".PerfilPetActivity"></activity>
         <activity android:name=".CadastroUserActivity"></activity>
+        <activity android:name=".MeusPetsActivity"></activity>
 
 
     </application>

@@ -12,10 +12,10 @@ class HomeActivity : AppCompatActivity() {
         //DEFINE XML
         setContentView(R.layout.activity_home)
 
-        //AÇÃO DO BOTÃO [CADASTROS]
+        //AÇÃO DO BOTÃO [MEUS PETS]
         val btCadPet: Button = findViewById(R.id.bt_cadpet)
         btCadPet.setOnClickListener {
-            val intent = Intent(this, CadastroPetActivity::class.java)
+            val intent = Intent(this, MeusPetsActivity::class.java)
             startActivity(intent)
         }
 

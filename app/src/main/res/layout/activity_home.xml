@@ -60,7 +60,7 @@
         android:layout_marginEnd="15dp"
         android:background="@color/rosa_escuro"
 
-        android:text="Cadastro pet"
+        android:text="Meus Pets"
         android:textSize="20dp"
 
         app:layout_constraintBottom_toTopOf="@+id/bt_adocao"
@@ -110,7 +110,7 @@
         android:layout_marginEnd="15dp"
         android:background="@color/rosa_escuro"
         android:text="Doações"
-        android:textSize="15dp"
+        android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/footer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bt_adocao"/>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="@color/roxo"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <!-- IMAGEM  -->
+    <ImageView
+        android:id="@+id/img_pet_user"
+        android:src="@drawable/dog01"
+
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- TEXTO  -->
+    <TextView
+        android:id="@+id/tx_pet_user_nome"
+        android:layout_width="wrap_content"
+        android:textColor="#FFF7E0"
+
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="NOME"
+
+        app:layout_constraintBottom_toTopOf="@+id/tx_pet_user_idade"
+        app:layout_constraintStart_toEndOf="@+id/img_pet_user" />
+
+    <TextView
+        android:id="@+id/tx_pet_user_idade"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:textColor="#FFF7E0"
+        android:layout_marginStart="10dp"
+        android:text="IDADE"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/img_pet_user"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tx_pet_user_peso"
+        android:text="PESO"
+        android:textColor="#FFF7E0"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+
+        app:layout_constraintStart_toEndOf="@+id/img_pet_user"
+        app:layout_constraintTop_toBottomOf="@+id/tx_pet_user_idade" />
+
+<!--    <Button-->
+<!--        android:id="@+id/bt_pet_user_edit"-->
+<!--        android:text="✏️"-->
+<!--        android:textSize="25dp"-->
+
+<!--        android:layout_width="80dp"-->
+<!--        android:layout_height="80dp"-->
+<!--        app:layout_constraintHeight_percent="0.8"-->
+
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"/>-->
+
+    <ImageView
+        android:id="@+id/bt_pet_user_exc"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/botao_exc"
+        android:layout_margin="10dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/bt_pet_user_edt"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+
+        android:src="@drawable/botao_editar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/bt_pet_user_exc"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
