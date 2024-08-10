@@ -26,8 +26,8 @@ class PerfilPetActivity : AppCompatActivity() {
             // Atualiza a UI com os dados do pet e do usuário
             if (pet != null) {
                 findViewById<TextView>(R.id.tx_nome_dog).text = pet.nome
-                findViewById<TextView>(R.id.tx_idade_dog).text = "Peso: " + pet.idade.toString() + " Anos"
-                findViewById<TextView>(R.id.tx_peso_dog).text  = "Idade: " +pet.peso.toString() + " Kg"
+                findViewById<TextView>(R.id.tx_idade_dog).text = "Idade: " + pet.idade.toString() + " Anos"
+                findViewById<TextView>(R.id.tx_peso_dog).text  = "Peso: " +pet.peso.toString() + " Kg"
             }
 
             if (usuario != null) {

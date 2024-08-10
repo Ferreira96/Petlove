@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-
+    android:background="@color/rosa_escuro"
 
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
@@ -13,8 +13,8 @@
         android:id="@+id/imageView"
         android:src="@drawable/dog01"
 
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,29 +23,33 @@
     <!-- TEXTO  -->
     <TextView
         android:id="@+id/tx_nome"
-        android:text="NOME"
-
         android:layout_width="wrap_content"
+        android:textColor="#FFF7E0"
+
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:text="NOME"
 
+        app:layout_constraintBottom_toTopOf="@+id/tx_idade"
+        app:layout_constraintStart_toEndOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/tx_idade"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:textColor="#FFF7E0"
+        android:layout_marginStart="10dp"
+        android:text="IDADE"
+
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tx_idade"
-        android:text="IDADE"
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/tx_nome" />
-
-    <TextView
         android:id="@+id/tx_peso"
         android:text="PESO"
+        android:textColor="#FFF7E0"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

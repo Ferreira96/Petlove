@@ -5,6 +5,39 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <RelativeLayout
+        android:id="@+id/header_cad_user"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@drawable/gradient_background"
+        android:gravity="center_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tx_titulo_cad"
+            android:text="CADASTRO"
+            android:textColor="#FFF7E0"
+            android:textSize="35dp"
+            android:textAlignment="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="128dp"
+            android:layout_height="64dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:layout_toStartOf="@+id/tx_titulo_cad"
+            android:src="@drawable/petlove_icon_pet" />
+    </RelativeLayout>
+
 
     <!-- TEXTO  -->
 
@@ -12,14 +45,13 @@
         android:id="@+id/lb_cad_celular"
         android:layout_width="250dp"
         android:layout_height="50dp"
+        android:layout_marginEnd="15dp"
 
         android:ems="10"
 
         android:inputType="text"
         android:text=""
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintStart_toEndOf="@+id/tx_cad_senha"
         app:layout_constraintTop_toBottomOf="@+id/lb_cad_nome" />
 
     <TextView
@@ -28,7 +60,10 @@
 
         android:layout_width="100dp"
         android:layout_height="50dp"
-        android:gravity="center"
+        android:gravity="start|center"
+        android:layout_marginStart="5dp"
+        android:textSize="15dp"
+        android:textColor="@color/roxo"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tx_cad_nome" />
@@ -37,41 +72,33 @@
         android:id="@+id/lb_cad_nome"
         android:layout_width="250dp"
         android:layout_height="50dp"
+        android:layout_marginEnd="15dp"
 
         android:ems="10"
         android:inputType="text"
 
         android:text=""
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/footer"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintStart_toEndOf="@+id/tx_cad_senha"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/header_cad_user"
+        app:layout_constraintVertical_bias="0.3" />
 
+
+    <!-- Cabeçalho -->
     <TextView
         android:id="@+id/tx_cad_nome"
+        android:layout_width="100dp"
+
+        android:layout_height="50dp"
+        android:gravity="start|center"
+        android:layout_marginStart="5dp"
+        android:textColor="@color/roxo"
         android:text="NOME:"
 
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:gravity="center"
-
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/footer"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tx_titulo_cad"
-        android:text="CADASTRO"
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        app:layout_constraintBottom_toTopOf="@+id/tx_cad_email"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2" />
+        app:layout_constraintTop_toBottomOf="@+id/header_cad_user"
+        app:layout_constraintVertical_bias="0.3" />
 
     <TextView
         android:id="@+id/tx_cad_email"
@@ -79,7 +106,10 @@
 
         android:layout_width="100dp"
         android:layout_height="50dp"
-        android:gravity="center"
+        android:gravity="start|center"
+        android:layout_marginStart="5dp"
+        android:textSize="15dp"
+        android:textColor="@color/roxo"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tx_cad_celular" />
@@ -90,7 +120,10 @@
 
         android:layout_width="100dp"
         android:layout_height="50dp"
-        android:gravity="center"
+        android:gravity="start|center"
+        android:layout_marginStart="5dp"
+        android:textSize="15dp"
+        android:textColor="@color/roxo"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tx_cad_email" />
@@ -100,26 +133,26 @@
         android:id="@+id/lb_cad_email"
         android:layout_width="250dp"
         android:layout_height="50dp"
+        android:layout_marginEnd="15dp"
 
         android:ems="10"
         android:inputType="text"
         android:text=""
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tx_cad_email"
         app:layout_constraintTop_toBottomOf="@+id/lb_cad_celular" />
 
     <EditText
         android:id="@+id/lb_cad_senha"
         android:layout_width="250dp"
         android:layout_height="50dp"
+        android:layout_marginEnd="15dp"
 
         android:ems="10"
         android:inputType="text"
         android:text=""
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tx_cad_senha"
         app:layout_constraintTop_toBottomOf="@+id/lb_cad_email" />
 
     <!-- BOTÃO  -->
@@ -130,10 +163,35 @@
         android:layout_height="60dp"
         android:text="CADASTRAR"
 
+        app:layout_constraintBottom_toTopOf="@+id/footer"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lb_cad_senha" />
+
+    <!-- Rodapé -->
+    <RelativeLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@drawable/gradient_background"
+        android:gravity="center_vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lb_cad_senha"/>
+        <TextView
+            android:id="@+id/TxtView_Direitos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:contentDescription="PetLove ₢ - Todos os Direitos Reservados"
+            android:gravity="center"
+            android:text="PetLove ₢ - Todos os Direitos Reservados"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="15dp" />
+
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
