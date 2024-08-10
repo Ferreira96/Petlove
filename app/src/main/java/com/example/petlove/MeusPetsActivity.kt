@@ -4,19 +4,21 @@ import com.example.petlove.repository.Pet
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.petlove.formularios.FormPetActivity
+import com.example.petlove.repository.deletePet
 import com.google.firebase.database.FirebaseDatabase
 import com.example.petlove.repository.getPets
 import com.example.petlove.repository.getUsuarioPorEmail
-import com.example.petlove.repository.insertPet
+import com.example.petlove.repository.updatePet
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -32,15 +34,13 @@ class MeusPetsActivity : AppCompatActivity() {
         //AÇÃO DO BOTÃO [MEUS PETS]
         val btEntrar: Button = findViewById(R.id.bt_cadastro_pet)
         btEntrar.setOnClickListener {
-            val intent = Intent(this, CadastroPetActivity::class.java)
+            val intent = Intent(this, FormPetActivity::class.java)
             startActivity(intent)
         }
 
         // Recupera dados do SharedPreferences
         val sharedPreferences = getSharedPreferences("PersistenciaLogin", Context.MODE_PRIVATE)
         val userEmail = sharedPreferences.getString("USER_EMAIL", null)
-
-
 
 
         CoroutineScope(Dispatchers.Main).launch {
@@ -80,6 +80,34 @@ class ListaMeusPets(
             val peso = itemView.findViewById<TextView>(R.id.tx_pet_user_peso)
             peso.text = pet.peso.toString() + "Kg"
 
+            //BOTAO [EDITAR]
+            val botaoEditar = itemView.findViewById<ImageView>(R.id.bt_pet_user_edt)
+            botaoEditar.setOnClickListener {
+                /*envia a variavel adocao para AdocaoEDoacaoActivity*/
+                val intent = Intent(context, FormPetActivity::class.java)
+                intent.putExtra("petToUpdate_id", pet.id)
+                context.startActivity(intent)
+            }
+
+            //BOTAO [EXCLUIR]
+            val botaoExcluir = itemView.findViewById<ImageView>(R.id.bt_pet_user_exc)
+            botaoExcluir.setOnClickListener {
+                botaoExcluir(pet)
+                val intent = Intent(context, MeusPetsActivity::class.java)
+                context.startActivity(intent)
+            }
+        }
+
+        private fun botaoExcluir(pet: Pet) {
+            CoroutineScope(Dispatchers.Main).launch {
+                deletePet(pet.id)
+            }
+        }
+
+        private fun botaoEditar(pet: Pet) {
+            CoroutineScope(Dispatchers.Main).launch {
+                updatePet(pet)
+            }
         }
     }
 
@@ -98,4 +126,5 @@ class ListaMeusPets(
     override fun getItemCount(): Int {
         return pets.size
     }
+
 }

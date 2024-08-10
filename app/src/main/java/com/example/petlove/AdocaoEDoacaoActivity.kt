@@ -25,7 +25,7 @@ class AdocaoEDoacaoActivity : AppCompatActivity() {
         //DEFINE XML
         setContentView(R.layout.activity_adocao_e_doacao)
 
-        /*recupera variaveis da HomeActivity*/
+        //recupera variaveis da HomeActivity
         val adocao = intent.getBooleanExtra("adocao", false)
         val doacao = intent.getBooleanExtra("doacao", false)
 

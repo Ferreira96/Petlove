@@ -77,6 +77,7 @@
         android:layout_height="50dp"
         android:src="@drawable/botao_exc"
         android:layout_margin="10dp"
+        android:onClick="botaoExcluir"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -87,6 +88,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_margin="10dp"
+        android:onClick="botaoEditar"
 
         android:src="@drawable/botao_editar"
         app:layout_constraintBottom_toBottomOf="parent"

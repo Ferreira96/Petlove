@@ -8,6 +8,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.petlove.formularios.FormUserActivity
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
@@ -45,7 +46,7 @@ class LoginActivity : AppCompatActivity() {
         //AÇÃO DO TEXTVIEW [CADASTRO]
         val btCadastro: TextView = findViewById(R.id.bt_cadastro)
         btCadastro.setOnClickListener {
-            val intent = Intent(this, CadastroUserActivity::class.java)
+            val intent = Intent(this, FormUserActivity::class.java)
             startActivity(intent)
             startActivity(intent)
         }

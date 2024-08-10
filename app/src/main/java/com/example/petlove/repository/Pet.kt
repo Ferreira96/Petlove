@@ -83,3 +83,30 @@ suspend fun getMaiorIdPet(): Int? {
         null
     }
 }
+
+
+suspend fun updatePet(pet: Pet): Boolean {
+    val db = FirebaseFirestore.getInstance()
+
+    return try {
+        db.collection("pets").document(pet.id.toString()).set(pet).await()
+        Log.d("PetData", "Pet with ID ${pet.id} updated successfully.")
+        true
+    } catch (exception: Exception) {
+        Log.w("PetData", "Error updating pet with ID ${pet.id}.", exception)
+        false
+    }
+}
+
+suspend fun deletePet(id: Int): Boolean {
+    val db = FirebaseFirestore.getInstance()
+
+    return try {
+        db.collection("pets").document(id.toString()).delete().await()
+        Log.d("PetData", "Pet with ID $id deleted successfully.")
+        true
+    } catch (exception: Exception) {
+        Log.w("PetData", "Error deleting pet with ID $id.", exception)
+        false
+    }
+}

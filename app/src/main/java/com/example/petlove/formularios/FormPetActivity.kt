@@ -1,32 +1,46 @@
-package com.example.petlove
+package com.example.petlove.formularios
 
 import com.example.petlove.repository.Pet
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.petlove.HomeActivity
+import com.example.petlove.R
+import com.example.petlove.repository.getPet
 import com.example.petlove.repository.getUsuarioPorEmail
 import com.example.petlove.repository.insertPet
+import com.example.petlove.repository.updatePet
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class CadastroPetActivity : AppCompatActivity() {
+class FormPetActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        //DEFINE XML
         setContentView(R.layout.activity_cadastro_pet)
 
-        //AÇÃO DO BOTÃO [SALVAR]
-        /*metodo salvar TODO BOTÃO SALVAR*/
+        //recupera variaveis da MeusPetsActivity
+        val petToUpdate_id = intent.getIntExtra("petToUpdate_id", 0)
 
-        /*retorno para home*/
+        if(petToUpdate_id != 0){
+            CoroutineScope(Dispatchers.Main).launch {
+                var pet = getPet(petToUpdate_id)
+                if (pet != null) {
+                    findViewById<TextView>(R.id.lb_nome).text = pet.nome
+                    findViewById<TextView>(R.id.lb_idade).text = pet.idade.toString()
+                    findViewById<TextView>(R.id.lb_peso).text = pet.peso.toString()
+                    findViewById<CheckBox>(R.id.cb_adocao).isChecked = pet.adocao
+                    findViewById<CheckBox>(R.id.cb_doacao).isChecked = pet.doacao
+                }
+            }
+        }
+
+        //AÇÃO DO BOTÃO [SALVAR]
         val btCadPet: Button = findViewById(R.id.bt_salvar)
         btCadPet.setOnClickListener {
 
@@ -40,7 +54,6 @@ class CadastroPetActivity : AppCompatActivity() {
             val sharedPreferences = getSharedPreferences("PersistenciaLogin", Context.MODE_PRIVATE)
             val userEmail = sharedPreferences.getString("USER_EMAIL", null)
 
-
             CoroutineScope(Dispatchers.Main).launch {
                 var id_usuario = 0
                 if (userEmail != null) {
@@ -49,7 +62,7 @@ class CadastroPetActivity : AppCompatActivity() {
                 }
 
                 val pet = Pet(
-                    id = 0,
+                    id = petToUpdate_id ?: 0,
                     usuario_id = id_usuario,
                     nome = lb_nome.text.toString(),
                     idade = lb_idade.text.toString().toIntOrNull() ?: 0,
@@ -58,12 +71,12 @@ class CadastroPetActivity : AppCompatActivity() {
                     doacao = cbDoacao.isChecked
                 )
 
-                val result = insertPet(pet)
-                if (result) {
-                    Log.d("PetData", "Pet inserido com sucesso!")
-                } else {
-                    Log.d("PetData", "Falha ao inserir pet.")
+                if(pet.id ==0){
+                    insertPet(pet)
+                }else{
+                    updatePet(pet)
                 }
+
             }
 
 
