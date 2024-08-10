@@ -1,6 +1,6 @@
 package com.example.petlove
 
-import Pet
+import com.example.petlove.repository.Pet
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.FirebaseDatabase
-import getPets
+import com.example.petlove.repository.getPets
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -40,21 +40,27 @@ class AdocaoEDoacaoActivity : AppCompatActivity() {
 
         // Recupera a lista de pets de forma assíncrona
         CoroutineScope(Dispatchers.Main).launch {
-            val pets = getPets()
+            var pets = getPets()
+
+            if(adocao){
+                pets = pets.filter { it.adocao }
+            }else if (doacao) {
+                pets = pets.filter { it.doacao }
+            }
 
             // Atualiza o adapter da RecyclerView com a lista de pets
             val listaPetAdocaoView = findViewById<RecyclerView>(R.id.listapetadocao)
-            listaPetAdocaoView.adapter = ListaPetAdocao(this@AdocaoEDoacaoActivity, pets)
+            listaPetAdocaoView.adapter = ListaPets(this@AdocaoEDoacaoActivity, pets)
             listaPetAdocaoView.layoutManager = LinearLayoutManager(this@AdocaoEDoacaoActivity)
         }
     }
 }
 
 //*** LISTA DE VIEW ***//
-class ListaPetAdocao(
+class ListaPets(
     private val context: Context,
     private val pets: List<Pet>
-) : RecyclerView.Adapter<ListaPetAdocao.ViewHolder>() {
+) : RecyclerView.Adapter<ListaPets.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun vincula(pet: Pet, context: Context) {
@@ -62,10 +68,10 @@ class ListaPetAdocao(
             nome.text = pet.nome
 
             val idade = itemView.findViewById<TextView>(R.id.tx_idade)
-            idade.text = pet.idade.toString()
+            idade.text = pet.idade.toString() + "Anos"
 
             val peso = itemView.findViewById<TextView>(R.id.tx_peso)
-            peso.text = pet.peso.toString()
+            peso.text = pet.peso.toString() + "Kg"
 
             // AÇÃO DO BOTÃO [VER PERFIL]
             val btPetPerfil = itemView.findViewById<Button>(R.id.bt_petperfil)

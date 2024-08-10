@@ -3,7 +3,8 @@ package com.example.petlove
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import getPet
+import com.example.petlove.repository.getPet
+import com.example.petlove.repository.getUsuario
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

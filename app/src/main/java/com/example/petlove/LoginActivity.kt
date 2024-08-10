@@ -3,7 +3,6 @@ package com.example.petlove
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -46,7 +45,7 @@ class LoginActivity : AppCompatActivity() {
         //AÇÃO DO TEXTVIEW [CADASTRO]
         val btCadastro: TextView = findViewById(R.id.bt_cadastro)
         btCadastro.setOnClickListener {
-            val intent = Intent(this, CadastroActivity::class.java)
+            val intent = Intent(this, CadastroUserActivity::class.java)
             startActivity(intent)
             startActivity(intent)
         }

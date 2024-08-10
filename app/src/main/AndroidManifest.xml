@@ -30,7 +30,7 @@
         <activity android:name=".CadastroPetActivity"></activity>
         <activity android:name=".AdocaoEDoacaoActivity"></activity>
         <activity android:name=".PerfilPetActivity"></activity>
-        <activity android:name=".CadastroActivity"></activity>
+        <activity android:name=".CadastroUserActivity"></activity>
 
 
     </application>

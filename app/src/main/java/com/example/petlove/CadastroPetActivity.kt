@@ -1,6 +1,6 @@
 package com.example.petlove
 
-import Pet
+import com.example.petlove.repository.Pet
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -10,7 +10,8 @@ import android.widget.CheckBox
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import insertPet
+import com.example.petlove.repository.getUsuarioPorEmail
+import com.example.petlove.repository.insertPet
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

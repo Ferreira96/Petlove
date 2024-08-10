@@ -1,11 +1,12 @@
 package com.example.petlove
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.petlove.repository.Usuario
+import com.example.petlove.repository.addUsuario
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
@@ -13,7 +14,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class CadastroActivity : AppCompatActivity() {
+class CadastroUserActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
 
 
