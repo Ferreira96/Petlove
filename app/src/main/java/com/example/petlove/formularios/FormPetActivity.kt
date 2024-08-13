@@ -3,6 +3,7 @@ package com.example.petlove.formularios
 import com.example.petlove.repository.Pet
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
 import android.widget.CheckBox
@@ -21,6 +22,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class FormPetActivity : AppCompatActivity() {
+
+    private var imageUri: Uri? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cadastro_pet)
@@ -45,6 +49,8 @@ class FormPetActivity : AppCompatActivity() {
         val btAddImgPet: Button = findViewById(R.id.bt_add_img_pet)
         btAddImgPet.setOnClickListener {
             openGallery()
+            val img_cad_pet: ImageView = findViewById(R.id.img_cad_pet)
+            img_cad_pet.setImageURI(imageUri)
         }
 
         //AÇÃO DO BOTÃO [SALVAR]
@@ -79,7 +85,7 @@ class FormPetActivity : AppCompatActivity() {
                 )
 
                 if(pet.id ==0){
-                    insertPet(pet)
+                    insertPet(pet, imageUri)
                 }else{
                     updatePet(pet)
                 }
@@ -101,9 +107,7 @@ class FormPetActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.data != null) {
-            val imageUri = data.data
-            val img_cad_pet: ImageView = findViewById(R.id.img_cad_pet)
-            img_cad_pet.setImageURI(imageUri)
+            imageUri = data.data
         }
     }
 

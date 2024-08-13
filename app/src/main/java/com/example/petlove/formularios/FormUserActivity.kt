@@ -1,6 +1,7 @@
 package com.example.petlove.formularios
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -20,6 +21,7 @@ import kotlinx.coroutines.launch
 class FormUserActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
 
+    private var imageUri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +38,8 @@ class FormUserActivity : AppCompatActivity() {
         val btAddImgPet: Button = findViewById(R.id.bt_add_img_user)
         btAddImgPet.setOnClickListener {
             openGallery()
+            val img_cad_user: ImageView = findViewById(R.id.img_cad_user)
+            img_cad_user.setImageURI(imageUri)
         }
 
         //AÇÃO DO BOTÃO [CADASTRO]
@@ -70,7 +74,7 @@ class FormUserActivity : AppCompatActivity() {
             if(task.isSuccessful){
 
                 CoroutineScope(Dispatchers.Main).launch {
-                    addUsuario(novoUsuario)
+                    addUsuario(novoUsuario, imageUri)
                 }
                 Toast.makeText(baseContext, "Usuario criado com sucesso", Toast.LENGTH_SHORT).show()
 
@@ -89,9 +93,8 @@ class FormUserActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.data != null) {
-            val imageUri = data.data
-            val img_cad_user: ImageView = findViewById(R.id.img_cad_user)
-            img_cad_user.setImageURI(imageUri)
+            imageUri = data.data
+
         }
     }
 

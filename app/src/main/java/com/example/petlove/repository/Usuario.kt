@@ -1,7 +1,9 @@
 package com.example.petlove.repository
 
+import android.net.Uri
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.tasks.await
 
 data class Usuario(
@@ -71,7 +73,7 @@ suspend fun getUsuarios(): List<Usuario> {
     }
 }
 
-suspend fun addUsuario(usuario: Usuario): Boolean {
+suspend fun addUsuario(usuario: Usuario, imageUri: Uri?): Boolean {
     val db = FirebaseFirestore.getInstance()
 
     return try {
@@ -83,7 +85,10 @@ suspend fun addUsuario(usuario: Usuario): Boolean {
 
         // Adiciona o novo usuário ao Firestore
         db.collection("usuarios").document(novoId.toString()).set(usuario).await()
-
+        // Adiciona imagem ao Storage
+        if (imageUri != null){
+            saveUserImageToStorage(imageUri, novoId)
+        }
         Log.d("UsuarioData", "Usuário adicionado com sucesso: $usuario")
         true // Retorna true se o usuário foi adicionado com sucesso
     } catch (exception: Exception) {
@@ -98,6 +103,23 @@ suspend fun getMaiorIdUsuario(): Int? {
     return if (usuarios.isNotEmpty()) {
         usuarios.maxByOrNull { it.id }?.id
     } else {
+        null
+    }
+}
+
+suspend fun saveUserImageToStorage(imageUri: Uri?, id: Int): String? {
+    if (imageUri == null) return null
+
+    val storageRef = FirebaseStorage.getInstance().reference
+    val userImageRef = storageRef.child("usuarios/$id.jpg")
+
+    return try {
+        userImageRef.putFile(imageUri).await()
+        val downloadUrl = userImageRef.downloadUrl.await()
+        Log.d("UserImage", "Image uploaded successfully: $downloadUrl")
+        downloadUrl.toString()
+    } catch (exception: Exception) {
+        Log.w("UserImage", "Error uploading image.", exception)
         null
     }
 }

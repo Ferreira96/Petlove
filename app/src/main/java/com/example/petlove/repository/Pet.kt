@@ -1,7 +1,9 @@
 package com.example.petlove.repository
 
+import android.net.Uri
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.tasks.await
 
 data class Pet(
@@ -53,7 +55,7 @@ suspend fun getPets(): List<Pet> {
 //PARA UTILIZAR OS METODOS
 //CoroutineScope(Dispatchers.Main).launch {}
 
-suspend fun insertPet(pet: Pet): Boolean {
+suspend fun insertPet(pet: Pet, imageUri: Uri?): Boolean {
     val db = FirebaseFirestore.getInstance()
 
     return try {
@@ -62,10 +64,12 @@ suspend fun insertPet(pet: Pet): Boolean {
 
         pet.id = novoId
 
-        // Adiciona o novo usuário ao Firestore
+        // Adiciona o novo pet ao Firestore
         db.collection("pets").document(novoId.toString()).set(pet).await()
-
-        // Adiciona ou atualiza o documento
+        // Adiciona imagem ao Storage
+        if (imageUri != null){
+            savePetImageToStorage(imageUri, novoId)
+        }
         Log.d("PetData", "Pet inserted with ID: ${novoId}")
         true
     } catch (exception: Exception) {
@@ -108,5 +112,22 @@ suspend fun deletePet(id: Int): Boolean {
     } catch (exception: Exception) {
         Log.w("PetData", "Error deleting pet with ID $id.", exception)
         false
+    }
+}
+
+suspend fun savePetImageToStorage(imageUri: Uri?, id: Int): String? {
+    if (imageUri == null) return null
+
+    val storageRef = FirebaseStorage.getInstance().reference
+    val petImageRef = storageRef.child("pets/$id.jpg")
+
+    return try {
+        petImageRef.putFile(imageUri).await()
+        val downloadUrl = petImageRef.downloadUrl.await()
+        Log.d("PetImage", "Image uploaded successfully: $downloadUrl")
+        downloadUrl.toString()
+    } catch (exception: Exception) {
+        Log.w("PetImage", "Error uploading image.", exception)
+        null
     }
 }
