@@ -41,6 +41,16 @@
             android:src="@drawable/petlove_icon_pet" />
     </RelativeLayout>
 
+    <!--BOTÃO [SELECIONAR FOTO]-->
+    <Button
+        android:id="@+id/bt_add_img_pet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selecionar foto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_cad_pet" />
+
     <!-- TEXTO  -->
     <TextView
         android:id="@+id/tx_nome"
@@ -159,7 +169,6 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/dog01"
-        app:layout_constraintBottom_toTopOf="@+id/lb_nome"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header_cad_user" />

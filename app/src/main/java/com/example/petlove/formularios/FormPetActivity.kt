@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.CheckBox
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -38,6 +39,12 @@ class FormPetActivity : AppCompatActivity() {
                     findViewById<CheckBox>(R.id.cb_doacao).isChecked = pet.doacao
                 }
             }
+        }
+
+        // //AÇÃO DO BOTÃO [CARREGAR FOTO PET]
+        val btAddImgPet: Button = findViewById(R.id.bt_add_img_pet)
+        btAddImgPet.setOnClickListener {
+            openGallery()
         }
 
         //AÇÃO DO BOTÃO [SALVAR]
@@ -79,10 +86,28 @@ class FormPetActivity : AppCompatActivity() {
 
             }
 
-
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
             Toast.makeText(this, "Pet adicionado com sucesso", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun openGallery() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, PICK_IMAGE_REQUEST)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.data != null) {
+            val imageUri = data.data
+            val img_cad_pet: ImageView = findViewById(R.id.img_cad_pet)
+            img_cad_pet.setImageURI(imageUri)
+        }
+    }
+
+    companion object {
+        private const val PICK_IMAGE_REQUEST = 1
     }
 }

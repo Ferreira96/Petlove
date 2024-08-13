@@ -1,8 +1,10 @@
 package com.example.petlove.formularios
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.petlove.R
@@ -29,6 +31,12 @@ class FormUserActivity : AppCompatActivity() {
         var lb_cad_email  = findViewById<EditText>(R.id.lb_cad_email)
         var lb_cad_senha  = findViewById<EditText>(R.id.lb_cad_senha)
 
+
+        // //AÇÃO DO BOTÃO [CARREGAR FOTO USER]
+        val btAddImgPet: Button = findViewById(R.id.bt_add_img_user)
+        btAddImgPet.setOnClickListener {
+            openGallery()
+        }
 
         //AÇÃO DO BOTÃO [CADASTRO]
         val btCadastro: Button = findViewById(R.id.bt_cadastro)
@@ -70,6 +78,25 @@ class FormUserActivity : AppCompatActivity() {
                 Toast.makeText(baseContext, "Falha na autenticação", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun openGallery() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, PICK_IMAGE_REQUEST)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.data != null) {
+            val imageUri = data.data
+            val img_cad_user: ImageView = findViewById(R.id.img_cad_user)
+            img_cad_user.setImageURI(imageUri)
+        }
+    }
+
+    companion object {
+        private const val PICK_IMAGE_REQUEST = 1
     }
 }
 
