@@ -131,3 +131,19 @@ suspend fun savePetImageToStorage(imageUri: Uri?, id: Int): String? {
         null
     }
 }
+//carrega imagem do banco
+suspend fun getPetImageUri(id: Int): Uri? {
+    val storageRef = FirebaseStorage.getInstance().reference
+    val petImageRef = storageRef.child("pets/$id.jpg")
+
+    return try {
+        val downloadUrl = petImageRef.downloadUrl.await()
+        Log.d("PetImage", "Image URI fetched successfully: $downloadUrl")
+        downloadUrl
+    } catch (exception: Exception) {
+        Log.w("PetImage", "Error fetching image URI.", exception)
+        null
+    }
+}
+
+

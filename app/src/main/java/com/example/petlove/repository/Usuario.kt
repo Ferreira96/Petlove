@@ -123,3 +123,18 @@ suspend fun saveUserImageToStorage(imageUri: Uri?, id: Int): String? {
         null
     }
 }
+
+//carrega imagem do banco
+suspend fun getUserImageUri(id: Int): Uri? {
+    val storageRef = FirebaseStorage.getInstance().reference
+    val userImageRef = storageRef.child("usuarios/$id.jpg")
+
+    return try {
+        val downloadUrl = userImageRef.downloadUrl.await()
+        Log.d("UserImage", "Image URI fetched successfully: $downloadUrl")
+        downloadUrl
+    } catch (exception: Exception) {
+        Log.w("UserImage", "Error fetching image URI.", exception)
+        null
+    }
+}

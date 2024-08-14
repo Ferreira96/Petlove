@@ -13,8 +13,10 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.petlove.formularios.FormPetActivity
 import com.example.petlove.repository.deletePet
+import com.example.petlove.repository.getPetImageUri
 import com.google.firebase.database.FirebaseDatabase
 import com.example.petlove.repository.getPets
 import com.example.petlove.repository.getUsuarioPorEmail
@@ -79,6 +81,17 @@ class ListaMeusPets(
 
             val peso = itemView.findViewById<TextView>(R.id.tx_pet_user_peso)
             peso.text = pet.peso.toString() + "Kg"
+
+            //carrega imagem do banco
+            CoroutineScope(Dispatchers.Main).launch {
+                val img_pet_user: ImageView = itemView.findViewById(R.id.img_pet_user)
+                val petImageUri = getPetImageUri(pet.id)
+                if (petImageUri != null) {
+                    Glide.with(itemView)
+                        .load(petImageUri)
+                        .into(img_pet_user)
+                }
+            }
 
             //BOTAO [EDITAR]
             val botaoEditar = itemView.findViewById<ImageView>(R.id.bt_pet_user_edt)

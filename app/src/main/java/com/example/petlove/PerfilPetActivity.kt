@@ -1,9 +1,13 @@
 package com.example.petlove
 
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.example.petlove.repository.getPet
+import com.example.petlove.repository.getPetImageUri
+import com.example.petlove.repository.getUserImageUri
 import com.example.petlove.repository.getUsuario
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -26,12 +30,29 @@ class PerfilPetActivity : AppCompatActivity() {
 
             // Atualiza a UI com os dados do pet e do usuário
             if (pet != null) {
+                //carrega imagem do banco
+                val imageView_dog: ImageView = findViewById(R.id.imageView_dog)
+                val petImageUri = getPetImageUri(pet.id)
+                if (petImageUri != null) {
+                    Glide.with(this@PerfilPetActivity)
+                        .load(petImageUri)
+                        .into(imageView_dog)
+                }
                 findViewById<TextView>(R.id.tx_nome_dog).text = pet.nome
                 findViewById<TextView>(R.id.tx_idade_dog).text = "Idade: " + pet.idade.toString() + " Anos"
                 findViewById<TextView>(R.id.tx_peso_dog).text  = "Peso: " +pet.peso.toString() + " Kg"
             }
 
             if (usuario != null) {
+                //carrega imagem do banco
+                val imageView_dono: ImageView = findViewById(R.id.imageView_dono)
+                val petImageUri = getUserImageUri(usuario.id)
+                if (petImageUri != null) {
+                    Glide.with(this@PerfilPetActivity)
+                        .load(petImageUri)
+                        .into(imageView_dono)
+                }
+
                 findViewById<TextView>(R.id.tx_nome_dono).text = usuario.nome
                 findViewById<TextView>(R.id.tx_contato_dono).text = "Contato: " + usuario.celular
             }

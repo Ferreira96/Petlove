@@ -11,9 +11,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.example.petlove.HomeActivity
 import com.example.petlove.R
 import com.example.petlove.repository.getPet
+import com.example.petlove.repository.getPetImageUri
 import com.example.petlove.repository.getUsuarioPorEmail
 import com.example.petlove.repository.insertPet
 import com.example.petlove.repository.updatePet
@@ -36,6 +38,14 @@ class FormPetActivity : AppCompatActivity() {
             CoroutineScope(Dispatchers.Main).launch {
                 var pet = getPet(petToUpdate_id)
                 if (pet != null) {
+                    //carrega imagem do banco
+                    val img_cad_pet: ImageView = findViewById(R.id.img_cad_pet)
+                    val petImageUri = getPetImageUri(pet.id)
+                    if (petImageUri != null) {
+                        Glide.with(this@FormPetActivity)
+                            .load(petImageUri)
+                            .into(img_cad_pet)
+                    }
                     findViewById<TextView>(R.id.lb_nome).text = pet.nome
                     findViewById<TextView>(R.id.lb_idade).text = pet.idade.toString()
                     findViewById<TextView>(R.id.lb_peso).text = pet.peso.toString()
@@ -49,8 +59,6 @@ class FormPetActivity : AppCompatActivity() {
         val btAddImgPet: Button = findViewById(R.id.bt_add_img_pet)
         btAddImgPet.setOnClickListener {
             openGallery()
-            val img_cad_pet: ImageView = findViewById(R.id.img_cad_pet)
-            img_cad_pet.setImageURI(imageUri)
         }
 
         //AÇÃO DO BOTÃO [SALVAR]
@@ -106,8 +114,11 @@ class FormPetActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.data != null) {
             imageUri = data.data
+            val img_cad_pet: ImageView = findViewById(R.id.img_cad_pet)
+            img_cad_pet.setImageURI(imageUri)
         }
     }
 

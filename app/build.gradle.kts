@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("com.google.gms.google-services")
+    id("kotlin-kapt")
 }
 
 android {
@@ -36,8 +37,12 @@ android {
     }
 }
 
-dependencies {
+kapt {
+    correctErrorTypes = true
+    useBuildCache = true
+}
 
+dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -47,10 +52,8 @@ dependencies {
     implementation(libs.firebase.database.ktx)
     implementation(libs.firebase.firestore.ktx)
     implementation(libs.firebase.storage.ktx)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    implementation(libs.firebase.bom)
-    implementation(libs.firebase.firestore)
-
+    implementation(platform(libs.firebase.bom))
+    //carrega imagem do banco
+    implementation("com.github.bumptech.glide:glide:4.15.1")
+    kapt("com.github.bumptech.glide:compiler:4.15.1")
 }

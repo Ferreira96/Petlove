@@ -8,10 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.petlove.repository.getPetImageUri
 import com.google.firebase.database.FirebaseDatabase
 import com.example.petlove.repository.getPets
 import kotlinx.coroutines.CoroutineScope
@@ -72,6 +75,18 @@ class ListaPets(
 
             val peso = itemView.findViewById<TextView>(R.id.tx_peso)
             peso.text = pet.peso.toString() + "Kg"
+
+            //carrega imagem do banco
+            CoroutineScope(Dispatchers.Main).launch {
+                val imageView: ImageView = itemView.findViewById(R.id.imageView)
+                val petImageUri = getPetImageUri(pet.id)
+
+                if (petImageUri != null) {
+                    Glide.with(itemView)
+                        .load(petImageUri)
+                        .into(imageView)
+                }
+            }
 
             // AÇÃO DO BOTÃO [VER PERFIL]
             val btPetPerfil = itemView.findViewById<Button>(R.id.bt_petperfil)
