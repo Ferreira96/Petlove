@@ -11,7 +11,7 @@ data class Pet(
     val usuario_id: Int = 0,
     val nome: String = "",
     val idade: Int = 0,
-    val peso: Int = 0,
+    val peso:  Float = 0f,
     val adocao: Boolean = false,
     val doacao: Boolean = false
 )

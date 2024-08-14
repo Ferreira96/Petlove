@@ -87,7 +87,7 @@ class FormPetActivity : AppCompatActivity() {
                     usuario_id = id_usuario,
                     nome = lb_nome.text.toString(),
                     idade = lb_idade.text.toString().toIntOrNull() ?: 0,
-                    peso = lb_peso.text.toString().toIntOrNull() ?: 0,
+                    peso = (lb_peso.text.toString().toFloatOrNull() ?: 0) as Float,
                     adocao = cbAdocao.isChecked,
                     doacao = cbDoacao.isChecked
                 )
