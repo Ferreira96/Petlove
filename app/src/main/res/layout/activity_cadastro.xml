@@ -17,179 +17,220 @@
 
         <TextView
             android:id="@+id/tx_titulo_cad"
-            android:text="CADASTRO"
+            android:fontFamily="@font/atma_semibold"
+            android:text="Cadastro"
             android:textColor="#FFF7E0"
-            android:textSize="35dp"
+            android:textSize="40dp"
             android:textAlignment="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true" />
+            android:layout_centerInParent="true"/>
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="128dp"
-            android:layout_height="64dp"
+            android:layout_width="73dp"
+            android:layout_height="56dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="2dp"
+            android:layout_marginStart="51dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="11dp"
             android:layout_toStartOf="@+id/tx_titulo_cad"
             android:src="@drawable/petlove_icon_pet" />
     </RelativeLayout>
 
     <!--IMAGEM DO USUARIO-->
+
+    <!--BOTÃO [SELECIONAR FOTO]-->
     <ImageView
         android:id="@+id/img_cad_user"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/avatar01"
+        android:layout_marginTop="32dp"
 
+        android:src="@drawable/avatar01"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header_cad_user" />
 
-    <!--BOTÃO [SELECIONAR FOTO]-->
     <Button
         android:id="@+id/bt_add_img_user"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="155dp"
+        android:layout_height="61dp"
+
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/atma_semibold"
         android:text="Selecionar foto"
+        android:textSize="16dp"
+
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_cad_user" />
 
     <!-- TEXTO  -->
 
-    <EditText
-        android:id="@+id/lb_cad_celular"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="15dp"
 
-        android:ems="10"
-
-        android:inputType="text"
-        android:text=""
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lb_cad_nome" />
-
-    <TextView
-        android:id="@+id/tx_cad_celular"
-        android:text="CELULAR:"
-
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:gravity="start|center"
-        android:layout_marginStart="5dp"
-        android:textSize="15dp"
-        android:textColor="@color/roxo"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tx_cad_nome" />
+    <!-- Cabeçalho -->
 
     <EditText
         android:id="@+id/lb_cad_nome"
         android:layout_width="250dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginEnd="20dp"
 
         android:ems="10"
         android:inputType="text"
+        android:textColor="@color/roxo"
 
         android:text=""
+        android:fontFamily="@font/atma_semibold"
         app:layout_constraintBottom_toTopOf="@+id/footer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header_cad_user"
-        app:layout_constraintVertical_bias="0.3" />
+        app:layout_constraintVertical_bias="0.439" />
 
-
-    <!-- Cabeçalho -->
     <TextView
         android:id="@+id/tx_cad_nome"
         android:layout_width="100dp"
 
         android:layout_height="50dp"
-        android:gravity="start|center"
         android:layout_marginStart="5dp"
-        android:textColor="@color/roxo"
-        android:text="NOME:"
+        android:fontFamily="@font/atma_semibold"
+        android:gravity="start|center"
+        android:text="Nome:"
+        android:textColor="@color/rosa_escuro"
+        android:textSize="20dp"
 
         app:layout_constraintBottom_toTopOf="@+id/footer"
+        app:layout_constraintEnd_toStartOf="@+id/lb_cad_nome"
+        app:layout_constraintHorizontal_bias="0.805"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header_cad_user"
-        app:layout_constraintVertical_bias="0.3" />
+        app:layout_constraintVertical_bias="0.439" />
 
     <TextView
-        android:id="@+id/tx_cad_email"
-        android:text="EMAIL:"
-
+        android:id="@+id/tx_cad_celular"
         android:layout_width="100dp"
+
         android:layout_height="50dp"
-        android:gravity="start|center"
         android:layout_marginStart="5dp"
-        android:textSize="15dp"
-        android:textColor="@color/roxo"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tx_cad_celular" />
-
-    <TextView
-        android:id="@+id/tx_cad_senha"
-        android:text="SENHA:"
-
-        android:layout_width="100dp"
-        android:layout_height="50dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/atma_semibold"
         android:gravity="start|center"
-        android:layout_marginStart="5dp"
-        android:textSize="15dp"
-        android:textColor="@color/roxo"
+        android:text="Celular:"
+        android:textColor="@color/rosa_escuro"
 
+        android:textSize="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/lb_cad_celular"
+        app:layout_constraintHorizontal_bias="0.805"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tx_cad_email" />
-
-    <!-- LABEL  -->
-    <EditText
-        android:id="@+id/lb_cad_email"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="15dp"
-
-        android:ems="10"
-        android:inputType="text"
-        android:text=""
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lb_cad_celular" />
+        app:layout_constraintTop_toBottomOf="@+id/tx_cad_nome" />
 
     <EditText
         android:id="@+id/lb_cad_senha"
         android:layout_width="250dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginTop="8dp"
 
+        android:layout_marginEnd="20dp"
         android:ems="10"
         android:inputType="text"
+        android:textColor="@color/roxo"
         android:text=""
-
+        android:fontFamily="@font/atma_semibold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lb_cad_email" />
 
+    <TextView
+        android:id="@+id/tx_cad_email"
+        android:layout_width="100dp"
+
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/atma_semibold"
+        android:gravity="start|center"
+        android:text="Email:"
+        android:textColor="@color/rosa_escuro"
+
+        android:textSize="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/lb_cad_email"
+        app:layout_constraintHorizontal_bias="0.805"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tx_cad_celular" />
+
+    <TextView
+        android:id="@+id/tx_cad_senha"
+        android:layout_width="100dp"
+
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/atma_semibold"
+        android:gravity="start|center"
+        android:text="Senha:"
+        android:textColor="@color/rosa_escuro"
+
+        android:textSize="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/lb_cad_senha"
+        app:layout_constraintHorizontal_bias="0.805"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tx_cad_email" />
+
+    <EditText
+        android:id="@+id/lb_cad_celular"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="4dp"
+
+        android:layout_marginEnd="20dp"
+
+        android:ems="10"
+        android:inputType="text"
+        android:textColor="@color/roxo"
+        android:text=""
+        android:fontFamily="@font/atma_semibold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lb_cad_nome" />
+
+    <EditText
+        android:id="@+id/lb_cad_email"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+
+        android:layout_marginEnd="20dp"
+        android:ems="10"
+        android:inputType="text"
+        android:textColor="@color/roxo"
+        android:text=""
+        android:fontFamily="@font/atma_semibold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lb_cad_celular" />
+
+    <!-- LABEL  -->
+
     <!-- BOTÃO  -->
+
+    <!-- Rodapé -->
+
     <Button
         android:id="@+id/bt_cadastro"
         android:layout_width="230dp"
-
         android:layout_height="60dp"
+        android:fontFamily="@font/atma_semibold"
         android:text="CADASTRAR"
-
+        android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/footer"
-
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lb_cad_senha" />
+        app:layout_constraintTop_toBottomOf="@+id/lb_cad_senha"
+        app:layout_constraintVertical_bias="0.403" />
 
-    <!-- Rodapé -->
     <RelativeLayout
         android:id="@+id/footer"
         android:layout_width="match_parent"
@@ -210,7 +251,8 @@
             android:text="PetLove ₢ - Todos os Direitos Reservados"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="15dp" />
+            android:textSize="18dp"
+            android:fontFamily="@font/atma_semibold"/>
 
     </RelativeLayout>
 

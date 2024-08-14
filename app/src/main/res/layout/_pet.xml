@@ -28,7 +28,10 @@
 
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:text="NOME"
+
+        android:text="Nome:"
+        android:fontFamily="@font/atma_semibold"
+        android:textSize="18dp"
 
         app:layout_constraintBottom_toTopOf="@+id/tx_idade"
         app:layout_constraintStart_toEndOf="@+id/imageView" />
@@ -40,7 +43,10 @@
         android:layout_height="wrap_content"
         android:textColor="#FFF7E0"
         android:layout_marginStart="10dp"
-        android:text="IDADE"
+
+        android:text="Idade:"
+        android:fontFamily="@font/atma_semibold"
+        android:textSize="18dp"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -48,8 +54,10 @@
 
     <TextView
         android:id="@+id/tx_peso"
-        android:text="PESO"
+        android:text="Peso:"
         android:textColor="#FFF7E0"
+        android:fontFamily="@font/atma_semibold"
+        android:textSize="18dp"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -60,13 +68,17 @@
 
     <Button
         android:id="@+id/bt_petperfil"
-        android:text="VER PERFIL"
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
 
+        android:fontFamily="@font/atma_semibold"
+        android:text="Ver Perfil"
+
+        android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.41" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

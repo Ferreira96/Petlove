@@ -21,9 +21,10 @@
 
         <TextView
             android:id="@+id/TxtView_Login_Titulo"
-            android:text="HOME"
+            android:fontFamily="@font/atma_semibold"
+            android:text="Home"
             android:textColor="#FFF7E0"
-            android:textSize="35dp"
+            android:textSize="40dp"
             android:textAlignment="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,13 +32,15 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="128dp"
-            android:layout_height="64dp"
+            android:layout_width="73dp"
+            android:layout_height="56dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="2dp"
+            android:layout_marginStart="73dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginEnd="-20dp"
+            android:layout_marginBottom="13dp"
             android:layout_toStartOf="@+id/TxtView_Login_Titulo"
             android:src="@drawable/petlove_icon_pet" />
     </RelativeLayout>
@@ -58,10 +61,10 @@
         android:layout_width="240dp"
         android:layout_height="100dp"
         android:layout_marginEnd="15dp"
-        android:background="@color/rosa_escuro"
 
+        android:fontFamily="@font/atma_semibold"
         android:text="Meus Pets"
-        android:textSize="20dp"
+        android:textSize="30dp"
 
         app:layout_constraintBottom_toTopOf="@+id/bt_adocao"
         app:layout_constraintEnd_toEndOf="parent"
@@ -85,10 +88,10 @@
         android:layout_width="240dp"
         android:layout_height="100dp"
         android:layout_marginEnd="15dp"
-        android:background="@color/rosa_escuro"
-        android:text="Adoções"
 
-        android:textSize="20dp"
+        android:fontFamily="@font/atma_semibold"
+        android:text="Adoções"
+        android:textSize="30dp"
         app:layout_constraintBottom_toTopOf="@+id/footer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header" />
@@ -108,9 +111,10 @@
         android:layout_width="240dp"
         android:layout_height="100dp"
         android:layout_marginEnd="15dp"
-        android:background="@color/rosa_escuro"
+
+        android:fontFamily="@font/atma_semibold"
         android:text="Doações"
-        android:textSize="20dp"
+        android:textSize="30dp"
         app:layout_constraintBottom_toTopOf="@+id/footer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bt_adocao"/>
@@ -137,7 +141,8 @@
             android:text="PetLove ₢ - Todos os Direitos Reservados"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="15dp" />
+            android:textSize="18dp"
+            android:fontFamily="@font/atma_semibold"/>
 
     </RelativeLayout>
 

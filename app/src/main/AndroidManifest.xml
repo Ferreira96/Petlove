@@ -35,6 +35,10 @@
         <activity android:name=".formularios.FormUserActivity"></activity>
         <activity android:name=".MeusPetsActivity"></activity>
 
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
 
     </application>
 
