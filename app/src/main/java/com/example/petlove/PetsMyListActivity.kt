@@ -28,21 +28,21 @@ import kotlinx.coroutines.launch
 class MeusPetsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_meus_pets)
+        setContentView(R.layout.activity_pets_my_list)
 
         // Inicialize o Firebase e recupere o objeto Pet
         FirebaseDatabase.getInstance().setPersistenceEnabled(true)
 
         //AÇÃO DO BOTÃO [MEUS PETS]
-        val btEntrar: Button = findViewById(R.id.bt_cadastro_pet)
+        val btEntrar: Button = findViewById(R.id.bt_pets_my)
         btEntrar.setOnClickListener {
             val intent = Intent(this, FormPetActivity::class.java)
             startActivity(intent)
         }
 
         // Recupera dados do SharedPreferences
-        val sharedPreferences = getSharedPreferences("PersistenciaLogin", Context.MODE_PRIVATE)
-        val userEmail = sharedPreferences.getString("USER_EMAIL", null)
+        val sessao = getSharedPreferences("sessao", Context.MODE_PRIVATE)
+        val userEmail = sessao.getString("USER_EMAIL", null)
 
 
         CoroutineScope(Dispatchers.Main).launch {
@@ -58,7 +58,7 @@ class MeusPetsActivity : AppCompatActivity() {
             pets = pets.filter { it.usuario_id == id_usuario }
 
             // Atualiza o adapter da RecyclerView com a lista de pets
-            val listaPetAdocaoView = findViewById<RecyclerView>(R.id.lista_meus_pets)
+            val listaPetAdocaoView = findViewById<RecyclerView>(R.id.list_pets_my)
             listaPetAdocaoView.adapter       = ListaMeusPets(this@MeusPetsActivity, pets)
             listaPetAdocaoView.layoutManager = LinearLayoutManager(this@MeusPetsActivity)
         }
@@ -73,18 +73,18 @@ class ListaMeusPets(
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun vincula(pet: Pet, context: Context) {
-            val nome = itemView.findViewById<TextView>(R.id.tx_pet_user_nome)
+            val nome = itemView.findViewById<TextView>(R.id.tx_pet_operations_nome)
             nome.text = pet.nome
 
-            val idade = itemView.findViewById<TextView>(R.id.tx_pet_user_idade)
+            val idade = itemView.findViewById<TextView>(R.id.tx_pet_operations_idade)
             idade.text = pet.idade.toString() + "Anos"
 
-            val peso = itemView.findViewById<TextView>(R.id.tx_pet_user_peso)
+            val peso = itemView.findViewById<TextView>(R.id.tx_pet_operations_peso)
             peso.text = pet.peso.toString() + "Kg"
 
             //carrega imagem do banco
             CoroutineScope(Dispatchers.Main).launch {
-                val img_pet_user: ImageView = itemView.findViewById(R.id.img_pet_user)
+                val img_pet_user: ImageView = itemView.findViewById(R.id.img_pet_operations)
                 val petImageUri = getPetImageUri(pet.id)
                 if (petImageUri != null) {
                     Glide.with(itemView)
@@ -94,7 +94,7 @@ class ListaMeusPets(
             }
 
             //BOTAO [EDITAR]
-            val botaoEditar = itemView.findViewById<ImageView>(R.id.bt_pet_user_edt)
+            val botaoEditar = itemView.findViewById<ImageView>(R.id.bt_pet_operations_editar)
             botaoEditar.setOnClickListener {
                 /*envia a variavel adocao para AdocaoEDoacaoActivity*/
                 val intent = Intent(context, FormPetActivity::class.java)
@@ -103,7 +103,7 @@ class ListaMeusPets(
             }
 
             //BOTAO [EXCLUIR]
-            val botaoExcluir = itemView.findViewById<ImageView>(R.id.bt_pet_user_exc)
+            val botaoExcluir = itemView.findViewById<ImageView>(R.id.bt_pet_operations_excluir)
             botaoExcluir.setOnClickListener {
                 botaoExcluir(pet)
                 val intent = Intent(context, MeusPetsActivity::class.java)
@@ -127,7 +127,7 @@ class ListaMeusPets(
     // CRIA O XML DOS OBJETOS
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(context)
-        val view = inflater.inflate(R.layout._pet_user, parent, false)
+        val view = inflater.inflate(R.layout._pet_operations, parent, false)
         return ViewHolder(view)
     }
 

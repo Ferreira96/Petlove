@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/home"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--  TOP  -->
+    <RelativeLayout
+        android:id="@+id/top"
+        android:background="@drawable/gradient_background"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tx_top"
+            android:text="Petlove"
+            android:textSize="40dp"
+            android:textColor="@color/branco"
+            android:fontFamily="@font/atma_semibold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+
+        <ImageView
+            android:id="@+id/img_pet_my"
+            android:src="@drawable/petlove_icon_pet"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin= "10dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_toStartOf="@+id/tx_top" />
+    </RelativeLayout>
+
+    <!-- BOTTOM -->
+    <RelativeLayout
+        android:id="@+id/bottom"
+        android:background="@drawable/gradient_background"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/tx_bottom"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/atma_semibold"
+            android:text="PetLove ₢ - Todos os Direitos Reservados"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+
+
+
+    <ImageView
+        android:id="@+id/img_menu_meus"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/meus_pets"
+        app:layout_constraintBottom_toTopOf="@+id/img_menu_adocoes"
+        app:layout_constraintEnd_toStartOf="@+id/bt_menu_meus"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top" />
+
+    <ImageView
+        android:id="@+id/img_menu_adocoes"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/processos_de_lar"
+        app:layout_constraintBottom_toTopOf="@+id/bottom"
+        app:layout_constraintEnd_toStartOf="@+id/bt_menu_adocoes"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top" />
+
+    <ImageView
+        android:id="@+id/img_menu_doacoes"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/minhas_doacoes"
+        app:layout_constraintBottom_toTopOf="@+id/bottom"
+        app:layout_constraintEnd_toStartOf="@+id/bt_menu_doacoes"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_menu_adocoes" />
+
+    <Button
+        android:id="@+id/bt_menu_meus"
+        android:layout_width="240dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="15dp"
+        android:fontFamily="@font/atma_semibold"
+        android:text="Meus Pets"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/bt_menu_adocoes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top"/>
+
+    <Button
+        android:id="@+id/bt_menu_adocoes"
+        android:layout_width="240dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="15dp"
+        android:fontFamily="@font/atma_semibold"
+        android:text="Adoções"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top" />
+
+    <Button
+        android:id="@+id/bt_menu_doacoes"
+        android:layout_width="240dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="15dp"
+        android:fontFamily="@font/atma_semibold"
+        android:text="Doações"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_menu_adocoes"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

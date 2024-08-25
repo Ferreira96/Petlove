@@ -26,16 +26,16 @@ class AdocaoEDoacaoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         //DEFINE XML
-        setContentView(R.layout.activity_adocao_e_doacao)
+        setContentView(R.layout.activity_pets_operations_list)
 
-        //recupera variaveis da HomeActivity
+        //recupera variaveis da MenuActivity
         val adocao = intent.getBooleanExtra("adocao", false)
         val doacao = intent.getBooleanExtra("doacao", false)
 
         if (adocao) {
-            findViewById<TextView>(R.id.titulo).text = "-  ADOÇÃO  -"
+            findViewById<TextView>(R.id.tx_top).text = "Adoção"
         } else if (doacao) {
-            findViewById<TextView>(R.id.titulo).text = "-  DOAÇÃO  -"
+            findViewById<TextView>(R.id.tx_top).text = "Doação"
         }
 
         // Inicialize o Firebase e recupere o objeto Pet
@@ -52,7 +52,7 @@ class AdocaoEDoacaoActivity : AppCompatActivity() {
             }
 
             // Atualiza o adapter da RecyclerView com a lista de pets
-            val listaPetAdocaoView = findViewById<RecyclerView>(R.id.listapetadocao)
+            val listaPetAdocaoView = findViewById<RecyclerView>(R.id.list_pets_operacoes)
             listaPetAdocaoView.adapter = ListaPets(this@AdocaoEDoacaoActivity, pets)
             listaPetAdocaoView.layoutManager = LinearLayoutManager(this@AdocaoEDoacaoActivity)
         }
@@ -67,18 +67,18 @@ class ListaPets(
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun vincula(pet: Pet, context: Context) {
-            val nome = itemView.findViewById<TextView>(R.id.tx_nome)
+            val nome = itemView.findViewById<TextView>(R.id.tx_pet_my_nome)
             nome.text = pet.nome
 
-            val idade = itemView.findViewById<TextView>(R.id.tx_idade)
+            val idade = itemView.findViewById<TextView>(R.id.tx_pet_my_idade)
             idade.text = pet.idade.toString() + "Anos"
 
-            val peso = itemView.findViewById<TextView>(R.id.tx_peso)
+            val peso = itemView.findViewById<TextView>(R.id.tx_pet_my_peso)
             peso.text = pet.peso.toString() + "Kg"
 
             //carrega imagem do banco
             CoroutineScope(Dispatchers.Main).launch {
-                val imageView: ImageView = itemView.findViewById(R.id.imageView)
+                val imageView: ImageView = itemView.findViewById(R.id.img_pet_my)
                 val petImageUri = getPetImageUri(pet.id)
 
                 if (petImageUri != null) {
@@ -89,11 +89,11 @@ class ListaPets(
             }
 
             // AÇÃO DO BOTÃO [VER PERFIL]
-            val btPetPerfil = itemView.findViewById<Button>(R.id.bt_petperfil)
+            val btPetPerfil = itemView.findViewById<Button>(R.id.bt_pet_my)
             btPetPerfil.setOnClickListener {
-                val intent = Intent(context, PerfilPetActivity::class.java)
+                val intent = Intent(context, VIewPetActivity::class.java)
 
-                /*envia a variavel adocao para PerfilPetActivity*/
+                /*envia a variavel adocao para VIewPetActivity*/
                 intent.putExtra("pet_id", pet.id)
 
                 context.startActivity(intent)
@@ -104,7 +104,7 @@ class ListaPets(
     // CRIA O XML DOS OBJETOS
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(context)
-        val view = inflater.inflate(R.layout._pet, parent, false)
+        val view = inflater.inflate(R.layout._pet_my, parent, false)
         return ViewHolder(view)
     }
 

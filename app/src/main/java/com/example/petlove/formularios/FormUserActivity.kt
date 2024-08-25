@@ -25,25 +25,25 @@ class FormUserActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_cadastro)
+        setContentView(R.layout._form_user)
 
         auth = Firebase.auth/**AUTENTICAÇÃO*/
-        var lb_cad_nome  = findViewById<EditText>(R.id.lb_cad_nome)
-        var lb_cad_celular  = findViewById<EditText>(R.id.lb_cad_celular)
-        var lb_cad_email  = findViewById<EditText>(R.id.lb_cad_email)
-        var lb_cad_senha  = findViewById<EditText>(R.id.lb_cad_senha)
+        var lb_cad_nome  = findViewById<EditText>(R.id.lb_form_user_nome)
+        var lb_cad_celular  = findViewById<EditText>(R.id.lb_form_user_celular)
+        var lb_cad_email  = findViewById<EditText>(R.id.lb_form_user_email)
+        var lb_cad_senha  = findViewById<EditText>(R.id.lb_form_user_senha)
 
 
         // //AÇÃO DO BOTÃO [CARREGAR FOTO USER]
-        val btAddImgPet: Button = findViewById(R.id.bt_add_img_user)
+        val btAddImgPet: Button = findViewById(R.id.bt_form_user_selecionar)
         btAddImgPet.setOnClickListener {
             openGallery()
-            val img_cad_user: ImageView = findViewById(R.id.img_cad_user)
+            val img_cad_user: ImageView = findViewById(R.id.img_form_user)
             img_cad_user.setImageURI(imageUri)
         }
 
         //AÇÃO DO BOTÃO [CADASTRO]
-        val btCadastro: Button = findViewById(R.id.bt_cadastro)
+        val btCadastro: Button = findViewById(R.id.txbt_form_user_cadastrar)
         btCadastro.setOnClickListener {
 
             val cad_email = lb_cad_email.text.toString()

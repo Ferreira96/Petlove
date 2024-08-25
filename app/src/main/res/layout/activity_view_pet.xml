@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main"
+    android:id="@+id/cadpet"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".LoginActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!--  TOP  -->
     <RelativeLayout
@@ -64,105 +62,101 @@
 
 
 
-    <!-- TITULO  -->
     <TextView
-        android:id="@+id/tx_login_titulo"
+        android:id="@+id/tx_view_pet_nome_pet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/atma_semibold"
-        android:text="Login"
-        android:textColor="@color/rosa"
-        android:textSize="40dp"
+        android:gravity="center"
+        android:text="Nome"
+        android:textColor="@color/roxo"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top"
+        app:layout_constraintVertical_bias="0.033" />
+
+    <TextView
+        android:id="@+id/_view_pet_pet_idade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/atma_semibold"
+        android:gravity="center"
+        android:text="Idade"
+        android:textColor="@color/roxo"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_view_pet_pet" />
+
+    <TextView
+        android:id="@+id/tx_view_pet_pet_peso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/atma_semibold"
+        android:gravity="center"
+        android:text="Peso"
+        android:textColor="@color/roxo"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/_view_pet_pet_idade" />
+
+    <ImageView
+        android:id="@+id/img_view_pet_pet"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/dog01"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tx_view_pet_nome_pet" />
+
+    <TextView
+        android:id="@+id/tx_view_pet_usuario_nome"
+        android:text="Nome"
+        android:gravity="center"
+        android:fontFamily="@font/atma_semibold"
+        android:textSize="20dp"
+        android:textColor="@color/roxo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/top" />
+        app:layout_constraintTop_toBottomOf="@+id/img_view_pet_usuario" />
 
     <TextView
-        android:id="@+id/tx_login_usuario"
-        android:text="Usuário:"
-        android:textColor="@color/rosa_escuro"
-        android:fontFamily="@font/atma_semibold"
-        android:gravity="start|center"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="5dp"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/lb_login_usuario"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4" />
-
-    <TextView
-        android:id="@+id/tx_login_senha"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="5dp"
-        android:gravity="start|center"
-        android:fontFamily="@font/atma_semibold"
-        android:text="Senha:"
-        android:textColor="@color/rosa_escuro"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/lb_login_usuario"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tx_login_usuario" />
-
-    <EditText
-        android:id="@+id/lb_login_usuario"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:ems="10"
-        android:inputType="text"
-        android:fontFamily="@font/atma_semibold"
-        android:text="teste@gmail.com"
-        android:textColor="@color/roxo"
-        android:layout_marginEnd="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4" />
-
-    <EditText
-        android:id="@+id/lb_login_senha"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:ems="10"
-        android:inputType="text"
-        android:fontFamily="@font/atma_semibold"
-        android:text="teste123"
-        android:textColor="@color/roxo"
-        android:layout_marginEnd="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lb_login_usuario" />
-
-    <Button
-        android:id="@+id/bt_login_entrar"
-        android:layout_width="230dp"
-        android:layout_height="60dp"
-        android:fontFamily="@font/atma_semibold"
-        android:text="Logar"
-        android:textAlignment="center"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lb_login_usuario"
-        app:layout_constraintVertical_bias="0.171" />
-
-    <TextView
-        android:id="@+id/txbt_login_cadastrar"
+        android:id="@+id/tx_view_pet_usuario_contato"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/atma_semibold"
-        android:text="Cadastro"
-        android:textColor="@color/rosa_escuro"
-        android:textSize="25dp"
+        android:gravity="center"
+        android:text="Contato"
+        android:textColor="@color/roxo"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tx_view_pet_usuario_nome" />
+
+    <ImageView
+        android:id="@+id/img_view_pet_usuario"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/avatar01"
         app:layout_constraintBottom_toTopOf="@+id/bottom"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_login_entrar"
-        app:layout_constraintVertical_bias="0.246" />
+        app:layout_constraintTop_toBottomOf="@+id/img_view_pet_pet" />
+
+    <ImageView
+        android:id="@+id/imgbt_view_pet_whatsapp"
+        android:layout_width="38dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/tx_view_pet_usuario_contato"
+        app:layout_constraintTop_toBottomOf="@+id/tx_view_pet_usuario_nome"
+        app:srcCompat="@drawable/wpp_icon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

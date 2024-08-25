@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cadpet"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--  TOP  -->
+    <RelativeLayout
+        android:id="@+id/top"
+        android:background="@drawable/gradient_background"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tx_top"
+            android:text="Petlove"
+            android:textSize="40dp"
+            android:textColor="@color/branco"
+            android:fontFamily="@font/atma_semibold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+
+        <ImageView
+            android:id="@+id/img_pet_my"
+            android:src="@drawable/petlove_icon_pet"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin= "10dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_toStartOf="@+id/tx_top" />
+    </RelativeLayout>
+
+    <!-- BOTTOM -->
+    <RelativeLayout
+        android:id="@+id/bottom"
+        android:background="@drawable/gradient_background"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/tx_bottom"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/atma_semibold"
+            android:text="PetLove ₢ - Todos os Direitos Reservados"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+
+
+
+    <ImageView
+        android:id="@+id/img_form_pet"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/dog01"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top" />
+
+    <Button
+        android:id="@+id/bt_form_pet_selecionar"
+        android:layout_width="155dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/atma_semibold"
+        android:text="Selecionar foto"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_form_pet" />
+
+    <Button
+        android:id="@+id/bt_form_pet_salvar"
+        android:layout_width="230dp"
+        android:layout_height="60dp"
+        android:fontFamily="@font/atma_semibold"
+        android:text="SALVAR"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cb_form_pet_doacao" />
+
+    <TextView
+        android:id="@+id/tx_pet_my_nome"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="4dp"
+        android:fontFamily="@font/atma_semibold"
+        android:gravity="start|center"
+        android:text="Nome:"
+        android:textColor="@color/rosa_escuro"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom"
+        app:layout_constraintEnd_toStartOf="@+id/lb_form_pet_nome"
+        app:layout_constraintHorizontal_bias="0.62"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top"
+        app:layout_constraintVertical_bias="0.422" />
+
+    <TextView
+        android:id="@+id/tx_pet_my_idade"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/atma_semibold"
+        android:gravity="start|center"
+        android:text="Idade:"
+        android:textColor="@color/rosa_escuro"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/lb_form_pet_idade"
+        app:layout_constraintHorizontal_bias="0.607"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tx_pet_my_nome" />
+
+    <TextView
+        android:id="@+id/tx_pet_my_peso"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/atma_semibold"
+        android:gravity="start|center"
+        android:text="Peso:"
+        android:textColor="@color/rosa_escuro"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/lb_form_pet_peso"
+        app:layout_constraintHorizontal_bias="0.607"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tx_pet_my_idade" />
+
+    <EditText
+        android:id="@+id/lb_form_pet_nome"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="28dp"
+        android:ems="10"
+        android:inputType="text"
+        android:fontFamily="@font/atma_semibold"
+        android:text=""
+        android:textColor="@color/roxo"
+        app:layout_constraintBottom_toTopOf="@+id/bottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top"
+        app:layout_constraintVertical_bias="0.422" />
+
+    <EditText
+        android:id="@+id/lb_form_pet_peso"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="28dp"
+        android:ems="10"
+        android:inputType="text"
+        android:fontFamily="@font/atma_semibold"
+        android:text=""
+        android:textColor="@color/roxo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lb_form_pet_idade" />
+
+    <EditText
+        android:id="@+id/lb_form_pet_idade"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="28dp"
+        android:ems="10"
+        android:inputType="text"
+        android:fontFamily="@font/atma_semibold"
+        android:text=""
+        android:textColor="@color/roxo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lb_form_pet_nome" />
+
+    <CheckBox
+        android:id="@+id/cb_form_pet_adocao"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="28dp"
+        android:fontFamily="@font/atma_semibold"
+        android:text="Busca lar?"
+        android:textColor="@color/rosa"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lb_form_pet_peso" />
+
+    <CheckBox
+        android:id="@+id/cb_form_pet_doacao"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="28dp"
+        android:fontFamily="@font/atma_semibold"
+        android:text="Busca doação?"
+        android:textColor="@color/rosa"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cb_form_pet_adocao" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

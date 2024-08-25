@@ -1,101 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <!--  TOP  -->
     <RelativeLayout
-        android:id="@+id/header_cad_user"
+        android:id="@+id/top"
+        android:background="@drawable/gradient_background"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="@drawable/gradient_background"
-        android:gravity="center_vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/tx_titulo_cad"
-            android:fontFamily="@font/atma_semibold"
-            android:text="Cadastro"
-            android:textColor="#FFF7E0"
+            android:id="@+id/tx_top"
+            android:text="Petlove"
             android:textSize="40dp"
-            android:textAlignment="center"
+            android:textColor="@color/branco"
+            android:fontFamily="@font/atma_semibold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"/>
+            android:layout_centerInParent="true" />
 
         <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="73dp"
-            android:layout_height="56dp"
+            android:id="@+id/img_pet_my"
+            android:src="@drawable/petlove_icon_pet"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin= "10dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="51dp"
-            android:layout_marginTop="13dp"
-            android:layout_marginEnd="2dp"
-            android:layout_marginBottom="11dp"
-            android:layout_toStartOf="@+id/tx_titulo_cad"
-            android:src="@drawable/petlove_icon_pet" />
+            android:layout_toStartOf="@+id/tx_top" />
     </RelativeLayout>
 
-    <!--IMAGEM DO USUARIO-->
+    <!-- BOTTOM -->
+    <RelativeLayout
+        android:id="@+id/bottom"
+        android:background="@drawable/gradient_background"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-    <!--BOTÃO [SELECIONAR FOTO]-->
+        <TextView
+            android:id="@+id/tx_bottom"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/atma_semibold"
+            android:text="PetLove ₢ - Todos os Direitos Reservados"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+
+
+
     <ImageView
-        android:id="@+id/img_cad_user"
+        android:id="@+id/img_form_user"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="32dp"
-
         android:src="@drawable/avatar01"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header_cad_user" />
+        app:layout_constraintTop_toBottomOf="@+id/top" />
 
     <Button
-        android:id="@+id/bt_add_img_user"
+        android:id="@+id/bt_form_user_selecionar"
         android:layout_width="155dp"
         android:layout_height="61dp"
-
         android:layout_marginTop="4dp"
         android:fontFamily="@font/atma_semibold"
         android:text="Selecionar foto"
         android:textSize="16dp"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_cad_user" />
-
-    <!-- TEXTO  -->
-
-
-    <!-- Cabeçalho -->
-
-    <EditText
-        android:id="@+id/lb_cad_nome"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="20dp"
-
-        android:ems="10"
-        android:inputType="text"
-        android:textColor="@color/roxo"
-
-        android:text=""
-        android:fontFamily="@font/atma_semibold"
-        app:layout_constraintBottom_toTopOf="@+id/footer"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header_cad_user"
-        app:layout_constraintVertical_bias="0.439" />
+        app:layout_constraintTop_toBottomOf="@+id/img_form_user" />
 
     <TextView
-        android:id="@+id/tx_cad_nome"
+        android:id="@+id/tx_form_user_nome"
         android:layout_width="100dp"
-
         android:layout_height="50dp"
         android:layout_marginStart="5dp"
         android:fontFamily="@font/atma_semibold"
@@ -103,18 +93,16 @@
         android:text="Nome:"
         android:textColor="@color/rosa_escuro"
         android:textSize="20dp"
-
-        app:layout_constraintBottom_toTopOf="@+id/footer"
-        app:layout_constraintEnd_toStartOf="@+id/lb_cad_nome"
+        app:layout_constraintBottom_toTopOf="@+id/bottom"
+        app:layout_constraintEnd_toStartOf="@+id/lb_form_user_nome"
         app:layout_constraintHorizontal_bias="0.805"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header_cad_user"
+        app:layout_constraintTop_toBottomOf="@+id/top"
         app:layout_constraintVertical_bias="0.439" />
 
     <TextView
-        android:id="@+id/tx_cad_celular"
+        android:id="@+id/tx_form_user_celular"
         android:layout_width="100dp"
-
         android:layout_height="50dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="4dp"
@@ -122,32 +110,15 @@
         android:gravity="start|center"
         android:text="Celular:"
         android:textColor="@color/rosa_escuro"
-
         android:textSize="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/lb_cad_celular"
+        app:layout_constraintEnd_toStartOf="@+id/lb_form_user_celular"
         app:layout_constraintHorizontal_bias="0.805"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tx_cad_nome" />
-
-    <EditText
-        android:id="@+id/lb_cad_senha"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
-
-        android:layout_marginEnd="20dp"
-        android:ems="10"
-        android:inputType="text"
-        android:textColor="@color/roxo"
-        android:text=""
-        android:fontFamily="@font/atma_semibold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lb_cad_email" />
+        app:layout_constraintTop_toBottomOf="@+id/tx_form_user_nome" />
 
     <TextView
-        android:id="@+id/tx_cad_email"
+        android:id="@+id/tx_form_user_email"
         android:layout_width="100dp"
-
         android:layout_height="50dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="8dp"
@@ -155,17 +126,15 @@
         android:gravity="start|center"
         android:text="Email:"
         android:textColor="@color/rosa_escuro"
-
         android:textSize="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/lb_cad_email"
+        app:layout_constraintEnd_toStartOf="@+id/lb_form_user_email"
         app:layout_constraintHorizontal_bias="0.805"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tx_cad_celular" />
+        app:layout_constraintTop_toBottomOf="@+id/tx_form_user_celular" />
 
     <TextView
-        android:id="@+id/tx_cad_senha"
+        android:id="@+id/tx_form_user_senha"
         android:layout_width="100dp"
-
         android:layout_height="50dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="8dp"
@@ -173,35 +142,32 @@
         android:gravity="start|center"
         android:text="Senha:"
         android:textColor="@color/rosa_escuro"
-
         android:textSize="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/lb_cad_senha"
+        app:layout_constraintEnd_toStartOf="@+id/lb_form_user_senha"
         app:layout_constraintHorizontal_bias="0.805"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tx_cad_email" />
+        app:layout_constraintTop_toBottomOf="@+id/tx_form_user_email" />
 
     <EditText
-        android:id="@+id/lb_cad_celular"
+        android:id="@+id/lb_form_user_nome"
         android:layout_width="250dp"
         android:layout_height="50dp"
-        android:layout_marginTop="4dp"
-
         android:layout_marginEnd="20dp"
-
         android:ems="10"
         android:inputType="text"
         android:textColor="@color/roxo"
         android:text=""
         android:fontFamily="@font/atma_semibold"
+        app:layout_constraintBottom_toTopOf="@+id/bottom"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lb_cad_nome" />
+        app:layout_constraintTop_toBottomOf="@+id/top"
+        app:layout_constraintVertical_bias="0.439" />
 
     <EditText
-        android:id="@+id/lb_cad_email"
+        android:id="@+id/lb_form_user_senha"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
-
         android:layout_marginEnd="20dp"
         android:ems="10"
         android:inputType="text"
@@ -209,51 +175,48 @@
         android:text=""
         android:fontFamily="@font/atma_semibold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lb_cad_celular" />
+        app:layout_constraintTop_toBottomOf="@+id/lb_form_user_email" />
 
-    <!-- LABEL  -->
+    <EditText
+        android:id="@+id/lb_form_user_celular"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="20dp"
+        android:ems="10"
+        android:inputType="text"
+        android:textColor="@color/roxo"
+        android:text=""
+        android:fontFamily="@font/atma_semibold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lb_form_user_nome" />
 
-    <!-- BOTÃO  -->
-
-    <!-- Rodapé -->
+    <EditText
+        android:id="@+id/lb_form_user_email"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="20dp"
+        android:ems="10"
+        android:inputType="text"
+        android:textColor="@color/roxo"
+        android:text=""
+        android:fontFamily="@font/atma_semibold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lb_form_user_celular" />
 
     <Button
-        android:id="@+id/bt_cadastro"
+        android:id="@+id/txbt_form_user_cadastrar"
         android:layout_width="230dp"
         android:layout_height="60dp"
         android:fontFamily="@font/atma_semibold"
         android:text="CADASTRAR"
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/footer"
+        app:layout_constraintBottom_toTopOf="@+id/bottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lb_cad_senha"
+        app:layout_constraintTop_toBottomOf="@+id/lb_form_user_senha"
         app:layout_constraintVertical_bias="0.403" />
-
-    <RelativeLayout
-        android:id="@+id/footer"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="@drawable/gradient_background"
-        android:gravity="center_vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <TextView
-            android:id="@+id/TxtView_Direitos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:contentDescription="PetLove ₢ - Todos os Direitos Reservados"
-            android:gravity="center"
-            android:text="PetLove ₢ - Todos os Direitos Reservados"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="18dp"
-            android:fontFamily="@font/atma_semibold"/>
-
-    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

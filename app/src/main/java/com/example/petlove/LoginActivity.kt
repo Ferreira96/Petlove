@@ -9,66 +9,41 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.petlove.formularios.FormUserActivity
-import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.auth
 
 class LoginActivity : AppCompatActivity() {
-    private lateinit var auth: FirebaseAuth /**AUTENTICAÇÃO*/
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        //DEFINE XML
         setContentView(R.layout.activity_login)
 
-        auth = Firebase.auth/**AUTENTICAÇÃO*/
-        var lb_usuario  = findViewById<EditText>(R.id.lb_usuario)
-        var lb_senha  = findViewById<EditText>(R.id.lb_senha)
+        //BOTÃO [ENTRAR]
+        findViewById<Button>(R.id.bt_login_entrar).setOnClickListener {
+            var lb_login_usuario = findViewById<EditText>(R.id.lb_login_usuario).text.toString()
+            var lb_login_senha   = findViewById<EditText>(R.id.lb_login_senha).text.toString()
 
-        /*
-        //MANIPULA TX_TITULO
-        var tx_titulo  = findViewById<TextView>(R.id.tx_titulo)
-        tx_titulo.setText("-  PETLOVE  -")
-         */
-
-        //AÇÃO DO BOTÃO [ENTRAR]
-        val btEntrar: Button = findViewById(R.id.bt_entrar)
-        btEntrar.setOnClickListener {
-            var lb_usuario_login = lb_usuario.text.toString()
-            var lb_senha_login = lb_senha.text.toString()
-
-            if(!lb_usuario_login.equals("") or !lb_senha_login.equals("")){
-                signInWithUserComEmailESenha(lb_usuario_login, lb_senha_login)
+            if(!lb_login_usuario.equals("") or !lb_login_senha.equals("")){
+                login(lb_login_usuario, lb_login_senha)
             }
         }
 
-        //AÇÃO DO TEXTVIEW [CADASTRO]
-        val btCadastro: TextView = findViewById(R.id.bt_cadastro)
-        btCadastro.setOnClickListener {
-            val intent = Intent(this, FormUserActivity::class.java)
-            startActivity(intent)
-            startActivity(intent)
+        //BOTÃO [CADASTRAR]
+        findViewById<TextView>(R.id.txbt_login_cadastrar).setOnClickListener {
+            startActivity(Intent(this, FormUserActivity::class.java))
         }
     }
 
-    /**LOGIN*/
-    private fun signInWithUserComEmailESenha(email: String, password: String){
+    private fun login(email: String, password: String){
+        //AUTENTICAÇÃO
+        val auth: FirebaseAuth by lazy { FirebaseAuth.getInstance() }
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener{ task->
             if(task.isSuccessful){
-                // Adiciona ao SharedPreferences
-                val sharedPreferences = getSharedPreferences("PersistenciaLogin", Context.MODE_PRIVATE)
-                val editor = sharedPreferences.edit()
-                editor.putString("USER_EMAIL", email)
-                editor.putBoolean("IS_LOGGED", true)
-                editor.apply()
+                //SESSÃO
+                val sessao = getSharedPreferences("sessao", Context.MODE_PRIVATE)
+                sessao.edit().putString( "USER_EMAIL", email).apply()
+                sessao.edit().putBoolean("IS_LOGGED" , true).apply()
 
-                val intent = Intent(this, HomeActivity::class.java)
-                startActivity(intent)
-
-                Toast.makeText(baseContext, "Login realizado com sucesso", Toast.LENGTH_SHORT).show()
-            }else{
-                Toast.makeText(baseContext, "email ou senha invalidos", Toast.LENGTH_SHORT).show()
+                //INTENT
+                startActivity(Intent(this, MenuActivity::class.java))
             }
         }
     }

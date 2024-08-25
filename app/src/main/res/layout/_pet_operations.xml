@@ -4,81 +4,76 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    android:background="@color/rosa_escuro"
+    android:background="@color/roxo"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
-    <!-- IMAGEM  -->
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/img_pet_operations"
         android:src="@drawable/dog01"
-
         android:layout_width="80dp"
         android:layout_height="80dp"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- TEXTO  -->
     <TextView
-        android:id="@+id/tx_nome"
+        android:id="@+id/tx_pet_operations_nome"
         android:layout_width="wrap_content"
         android:textColor="#FFF7E0"
-
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-
         android:text="Nome:"
         android:fontFamily="@font/atma_semibold"
         android:textSize="18dp"
-
-        app:layout_constraintBottom_toTopOf="@+id/tx_idade"
-        app:layout_constraintStart_toEndOf="@+id/imageView" />
+        app:layout_constraintBottom_toTopOf="@+id/tx_pet_operations_idade"
+        app:layout_constraintStart_toEndOf="@+id/img_pet_operations" />
 
     <TextView
-        android:id="@+id/tx_idade"
+        android:id="@+id/tx_pet_operations_idade"
         android:layout_width="wrap_content"
-
         android:layout_height="wrap_content"
         android:textColor="#FFF7E0"
         android:layout_marginStart="10dp"
-
         android:text="Idade:"
         android:fontFamily="@font/atma_semibold"
         android:textSize="18dp"
-
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/img_pet_operations"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tx_peso"
+        android:id="@+id/tx_pet_operations_peso"
         android:text="Peso:"
         android:textColor="#FFF7E0"
         android:fontFamily="@font/atma_semibold"
         android:textSize="18dp"
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        app:layout_constraintStart_toEndOf="@+id/img_pet_operations"
+        app:layout_constraintTop_toBottomOf="@+id/tx_pet_operations_idade" />
 
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/tx_idade" />
-
-    <Button
-        android:id="@+id/bt_petperfil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-
-        android:fontFamily="@font/atma_semibold"
-        android:text="Ver Perfil"
-
-        android:textSize="18dp"
+    <ImageView
+        android:id="@+id/bt_pet_operations_excluir"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/botao_exc"
+        android:layout_margin="10dp"
+        android:onClick="botaoExcluir"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/bt_pet_operations_editar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:onClick="botaoEditar"
+        android:src="@drawable/botao_editar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/bt_pet_operations_excluir"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.41" />
+        app:layout_constraintVertical_bias="0.5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

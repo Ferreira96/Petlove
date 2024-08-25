@@ -28,10 +28,10 @@
         </activity>
 
         <!--  DECLARAÇÃO DE ACTIVITYS  -->
-        <activity android:name=".HomeActivity"></activity>
+        <activity android:name=".MenuActivity"></activity>
         <activity android:name=".formularios.FormPetActivity"></activity>
         <activity android:name=".AdocaoEDoacaoActivity"></activity>
-        <activity android:name=".PerfilPetActivity"></activity>
+        <activity android:name=".VIewPetActivity"></activity>
         <activity android:name=".formularios.FormUserActivity"></activity>
         <activity android:name=".MeusPetsActivity"></activity>
 
