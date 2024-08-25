@@ -16,7 +16,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        //BOTÃO [ENTRAR]
+        //BOTÃO [ENTRAR].
         findViewById<Button>(R.id.bt_login_entrar).setOnClickListener {
             var lb_login_usuario = findViewById<EditText>(R.id.lb_login_usuario).text.toString()
             var lb_login_senha   = findViewById<EditText>(R.id.lb_login_senha).text.toString()
@@ -32,11 +32,13 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    //FIREBASE AUTH (LOGIN)
     private fun login(email: String, password: String){
-        //AUTENTICAÇÃO
         val auth: FirebaseAuth by lazy { FirebaseAuth.getInstance() }
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener{ task->
             if(task.isSuccessful){
+                Toast.makeText(baseContext, "Usuario logado com sucesso", Toast.LENGTH_SHORT).show()
+
                 //SESSÃO
                 val sessao = getSharedPreferences("sessao", Context.MODE_PRIVATE)
                 sessao.edit().putString( "USER_EMAIL", email).apply()

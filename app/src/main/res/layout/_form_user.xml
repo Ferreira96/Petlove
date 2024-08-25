@@ -206,11 +206,11 @@
         app:layout_constraintTop_toBottomOf="@+id/lb_form_user_celular" />
 
     <Button
-        android:id="@+id/txbt_form_user_cadastrar"
+        android:id="@+id/txbt_form_user_salvar"
         android:layout_width="230dp"
         android:layout_height="60dp"
         android:fontFamily="@font/atma_semibold"
-        android:text="CADASTRAR"
+        android:text="Salvar"
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/bottom"
         app:layout_constraintEnd_toEndOf="parent"

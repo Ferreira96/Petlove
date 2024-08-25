@@ -9,6 +9,7 @@ import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
@@ -23,23 +24,16 @@ class FormPetActivity : AppCompatActivity() {
 
     private var imageUri: Uri? = null
 
-    // Substitui onActivityResult: registra o callback para o resultado da seleção de imagem
-    private val selectImageLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == RESULT_OK) {
-            imageUri = result.data?.data
-            findViewById<ImageView>(R.id.img_form_pet).setImageURI(imageUri)
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout._form_pet)
 
-        // CARREGA DADOS SE FOR UPDATE
+
+        //CARREGA DADOS SE FOR UPDATE.
         val petToUpdate_id = intent.getIntExtra("petToUpdate_id", 0)
         if (petToUpdate_id != 0) {
             CoroutineScope(Dispatchers.Main).launch {
-                // RECUPERA E CARREGA DADOS
+                //RECUPERA E CARREGA DADOS
                 val pet = getPet(petToUpdate_id)
                 pet?.let {
                     findViewById<TextView>(R.id.lb_form_pet_nome).text = it.nome
@@ -48,8 +42,8 @@ class FormPetActivity : AppCompatActivity() {
                     findViewById<CheckBox>(R.id.cb_form_pet_adocao).isChecked = it.adocao
                     findViewById<CheckBox>(R.id.cb_form_pet_doacao).isChecked = it.doacao
 
-                    // RECUPERA E CARREGA IMG
-                    val petImageUri = getPetImageUri(it.id)
+                    //RECUPERA E CARREGA IMG
+                    val petImageUri = getPetImg(it.id)
                     if (petImageUri != null) {
                         Glide.with(this@FormPetActivity)
                             .load(petImageUri)
@@ -59,48 +53,52 @@ class FormPetActivity : AppCompatActivity() {
             }
         }
 
-        // AÇÃO DO BOTÃO [SELECIONAR FOTO(PET)]
-        findViewById<Button>(R.id.bt_form_pet_selecionar).setOnClickListener {
-            val intent = Intent(Intent.ACTION_PICK).apply {
-                type = "image/*"
+        //BOTÃO [SELECIONAR FOTO(PET)]
+        var selectImageLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == RESULT_OK) {
+                imageUri = result.data?.data
+                findViewById<ImageView>(R.id.img_form_pet).setImageURI(imageUri)
             }
+        }
+        findViewById<Button>(R.id.bt_form_pet_selecionar).setOnClickListener {
+            val intent = Intent(Intent.ACTION_PICK).apply { type = "image/*" }
             selectImageLauncher.launch(intent)
         }
 
-        // AÇÃO DO BOTÃO [SALVAR]
+        //BOTÃO [SALVAR]
         findViewById<Button>(R.id.bt_form_pet_salvar).setOnClickListener {
             CoroutineScope(Dispatchers.Main).launch {
 
-                // SESSÃO
+                //SESSÃO
                 val sessao = getSharedPreferences("sessao", Context.MODE_PRIVATE)
                 val userEmail = sessao.getString("USER_EMAIL", null)
 
-                // RECUPERA USUARIO
+                //VALIDA USUARIO
                 userEmail?.let { email ->
-                    val usuario = getUsuarioPorEmail(email)
 
-                    // MONTA OBJ PET
+                    //MONTA OBJ PET
                     val pet = Pet(
-                        id = petToUpdate_id,
-                        usuario_id = usuario?.id ?: 0,
-                        nome = findViewById<TextView>(R.id.lb_form_pet_nome).text.toString(),
-                        idade = findViewById<TextView>(R.id.lb_form_pet_idade).text.toString().toIntOrNull() ?: 0,
-                        peso = findViewById<TextView>(R.id.lb_form_pet_peso).text.toString().toFloatOrNull() ?: 0f,
-                        adocao = findViewById<CheckBox>(R.id.cb_form_pet_adocao).isChecked,
-                        doacao = findViewById<CheckBox>(R.id.cb_form_pet_doacao).isChecked
+                        id         = petToUpdate_id,
+                        usuario_id = getUsuarioPorEmail(email)?.id ?: 0,
+                        nome       = findViewById<TextView>(R.id.lb_form_pet_nome).text.toString(),
+                        idade      = findViewById<TextView>(R.id.lb_form_pet_idade).text.toString().toIntOrNull() ?: 0,
+                        peso       = findViewById<TextView>(R.id.lb_form_pet_peso).text.toString().toFloatOrNull() ?: 0f,
+                        adocao     = findViewById<CheckBox>(R.id.cb_form_pet_adocao).isChecked,
+                        doacao     = findViewById<CheckBox>(R.id.cb_form_pet_doacao).isChecked
                     )
 
-                    // PET ADD/UP
+                    //PET INSERT
                     if (pet.id == 0) {
-                        insertPet(pet, imageUri)
+                        insertPet(pet)/*insert firebase*/
+                        insertPetImg(imageUri)
                     } else {
-                        updatePet(pet)
+                        updatePet(pet)/*update firebase*/
                     }
                     Toast.makeText(baseContext, "Pet adicionado com sucesso", Toast.LENGTH_SHORT).show()
                 }
             }
 
-            // INTENT
+            //INTENT
             startActivity(Intent(this, MenuActivity::class.java))
         }
     }

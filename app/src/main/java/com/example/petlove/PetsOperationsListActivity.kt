@@ -14,8 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.petlove.repository.getPetImageUri
-import com.google.firebase.database.FirebaseDatabase
+import com.example.petlove.repository.getPetImg
 import com.example.petlove.repository.getPets
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -24,11 +23,12 @@ import kotlinx.coroutines.launch
 class AdocaoEDoacaoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        //DEFINE XML
         setContentView(R.layout.activity_pets_operations_list)
 
-        //recupera variaveis da MenuActivity
+        // ???
+        //FirebaseDatabase.getInstance().setPersistenceEnabled(true)
+
+        //RECUPERA VARIÁVEL DA INTENT
         val adocao = intent.getBooleanExtra("adocao", false)
         val doacao = intent.getBooleanExtra("doacao", false)
 
@@ -38,20 +38,19 @@ class AdocaoEDoacaoActivity : AppCompatActivity() {
             findViewById<TextView>(R.id.tx_top).text = "Doação"
         }
 
-        // Inicialize o Firebase e recupere o objeto Pet
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true)
 
-        // Recupera a lista de pets de forma assíncrona
+        //CONFIGURA LISTA
         CoroutineScope(Dispatchers.Main).launch {
-            var pets = getPets()
 
+            //FILTRA ADOCAO/DOACAO
+            var pets = getPets()
             if(adocao){
                 pets = pets.filter { it.adocao }
             }else if (doacao) {
                 pets = pets.filter { it.doacao }
             }
 
-            // Atualiza o adapter da RecyclerView com a lista de pets
+            /*CONFIGURA LISTA  <_pet_operations>*/
             val listaPetAdocaoView = findViewById<RecyclerView>(R.id.list_pets_operacoes)
             listaPetAdocaoView.adapter = ListaPets(this@AdocaoEDoacaoActivity, pets)
             listaPetAdocaoView.layoutManager = LinearLayoutManager(this@AdocaoEDoacaoActivity)
@@ -59,7 +58,7 @@ class AdocaoEDoacaoActivity : AppCompatActivity() {
     }
 }
 
-//*** LISTA DE VIEW ***//
+//CONFIGURA LISTA  <_pet_operations>
 class ListaPets(
     private val context: Context,
     private val pets: List<Pet>
@@ -67,6 +66,8 @@ class ListaPets(
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun vincula(pet: Pet, context: Context) {
+
+            //CARREGA DADOS DO FIRESTORE
             val nome = itemView.findViewById<TextView>(R.id.tx_pet_my_nome)
             nome.text = pet.nome
 
@@ -76,10 +77,10 @@ class ListaPets(
             val peso = itemView.findViewById<TextView>(R.id.tx_pet_my_peso)
             peso.text = pet.peso.toString() + "Kg"
 
-            //carrega imagem do banco
+            //CARREGA IMAGEM DO STORAGE
             CoroutineScope(Dispatchers.Main).launch {
                 val imageView: ImageView = itemView.findViewById(R.id.img_pet_my)
-                val petImageUri = getPetImageUri(pet.id)
+                val petImageUri = getPetImg(pet.id)
 
                 if (petImageUri != null) {
                     Glide.with(itemView)
@@ -88,20 +89,17 @@ class ListaPets(
                 }
             }
 
-            // AÇÃO DO BOTÃO [VER PERFIL]
+            //BOTÃO [VER PERFIL]
             val btPetPerfil = itemView.findViewById<Button>(R.id.bt_pet_my)
             btPetPerfil.setOnClickListener {
-                val intent = Intent(context, VIewPetActivity::class.java)
-
-                /*envia a variavel adocao para VIewPetActivity*/
+                val intent = Intent(context, ViewPetActivity::class.java)
                 intent.putExtra("pet_id", pet.id)
-
                 context.startActivity(intent)
             }
         }
     }
 
-    // CRIA O XML DOS OBJETOS
+    //OPERAÇOES BASICAS RecyclerView
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(context)
         val view = inflater.inflate(R.layout._pet_my, parent, false)

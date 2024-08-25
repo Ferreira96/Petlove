@@ -6,6 +6,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.tasks.await
 
+//OBJ
 data class Usuario(
     var id: Int = 0,
     val nome: String = "",
@@ -13,6 +14,8 @@ data class Usuario(
     val celular: String = ""
 )
 
+
+//OPERA OS OBJETOS NO FIRESTORE
 suspend fun getUsuario(id: Int): Usuario? {
     val db = FirebaseFirestore.getInstance()
     val usuarioRef = db.collection("usuarios").document(id.toString())
@@ -38,7 +41,6 @@ suspend fun getUsuarioPorEmail(email: String): Usuario? {
     val usuariosRef = db.collection("usuarios")
 
     return try {
-        // Faz uma consulta para encontrar o usuário com o e-mail fornecido
         val querySnapshot = usuariosRef.whereEqualTo("email", email).get().await()
 
         if (!querySnapshot.isEmpty) {
@@ -56,7 +58,6 @@ suspend fun getUsuarioPorEmail(email: String): Usuario? {
     }
 }
 
-
 suspend fun getUsuarios(): List<Usuario> {
     val db = FirebaseFirestore.getInstance()
 
@@ -73,45 +74,45 @@ suspend fun getUsuarios(): List<Usuario> {
     }
 }
 
-suspend fun addUsuario(usuario: Usuario, imageUri: Uri?): Boolean {
+suspend fun insertUsuario(usuario: Usuario): Boolean {
     val db = FirebaseFirestore.getInstance()
 
     return try {
-        // Obtém o maior ID atual e define o próximo ID
-        val maiorId = getMaiorIdUsuario() ?: 0
+        val maiorId = _maiorIdUsuario() ?: 0
         val novoId = maiorId + 1
-
         usuario.id = novoId
 
-        // Adiciona o novo usuário ao Firestore
         db.collection("usuarios").document(novoId.toString()).set(usuario).await()
-        // Adiciona imagem ao Storage
-        if (imageUri != null){
-            saveUserImageToStorage(imageUri, novoId)
-        }
-        Log.d("UsuarioData", "Usuário adicionado com sucesso: $usuario")
-        true // Retorna true se o usuário foi adicionado com sucesso
+        true
     } catch (exception: Exception) {
-        Log.w("UsuarioData", "Erro ao adicionar usuário.", exception)
-        false // Retorna false se houve falha na adição do usuário
+        false
     }
 }
 
-suspend fun getMaiorIdUsuario(): Int? {
-    val usuarios = getUsuarios()
 
-    return if (usuarios.isNotEmpty()) {
-        usuarios.maxByOrNull { it.id }?.id
-    } else {
+//OPERA IMAGENS NO STORAGE
+suspend fun getUsuarioImg(id: Int): Uri? {
+    val storageRef = FirebaseStorage.getInstance().reference
+    val userImageRef = storageRef.child("usuarios/$id.jpg")
+
+    return try {
+        val downloadUrl = userImageRef.downloadUrl.await()
+        Log.d("UserImage", "Image URI fetched successfully: $downloadUrl")
+        downloadUrl
+    } catch (exception: Exception) {
+        Log.w("UserImage", "Error fetching image URI.", exception)
         null
     }
 }
 
-suspend fun saveUserImageToStorage(imageUri: Uri?, id: Int): String? {
+suspend fun insertUsuarioImg(imageUri: Uri?): String? {
     if (imageUri == null) return null
 
+    val maiorId = _maiorIdUsuario() ?: 0
+    /*val novoId = maiorId + 1*/
+
     val storageRef = FirebaseStorage.getInstance().reference
-    val userImageRef = storageRef.child("usuarios/$id.jpg")
+    val userImageRef = storageRef.child("usuarios/$maiorId.jpg")
 
     return try {
         userImageRef.putFile(imageUri).await()
@@ -124,17 +125,14 @@ suspend fun saveUserImageToStorage(imageUri: Uri?, id: Int): String? {
     }
 }
 
-//carrega imagem do banco
-suspend fun getUserImageUri(id: Int): Uri? {
-    val storageRef = FirebaseStorage.getInstance().reference
-    val userImageRef = storageRef.child("usuarios/$id.jpg")
 
-    return try {
-        val downloadUrl = userImageRef.downloadUrl.await()
-        Log.d("UserImage", "Image URI fetched successfully: $downloadUrl")
-        downloadUrl
-    } catch (exception: Exception) {
-        Log.w("UserImage", "Error fetching image URI.", exception)
+//GERAL
+suspend fun _maiorIdUsuario(): Int? {
+    val usuarios = getUsuarios()
+
+    return if (usuarios.isNotEmpty()) {
+        usuarios.maxByOrNull { it.id }?.id
+    } else {
         null
     }
 }

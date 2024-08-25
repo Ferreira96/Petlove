@@ -6,18 +6,16 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.petlove.repository.getPet
-import com.example.petlove.repository.getPetImageUri
-import com.example.petlove.repository.getUserImageUri
+import com.example.petlove.repository.getPetImg
+import com.example.petlove.repository.getUsuarioImg
 import com.example.petlove.repository.getUsuario
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class VIewPetActivity : AppCompatActivity() {
-
+class ViewPetActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Define XML
         setContentView(R.layout.activity_view_pet)
 
         // Carrega os dados do pet de forma assíncrona
@@ -32,9 +30,9 @@ class VIewPetActivity : AppCompatActivity() {
             if (pet != null) {
                 //carrega imagem do banco
                 val imageView_dog: ImageView = findViewById(R.id.img_view_pet_pet)
-                val petImageUri = getPetImageUri(pet.id)
+                val petImageUri = getPetImg(pet.id)
                 if (petImageUri != null) {
-                    Glide.with(this@VIewPetActivity)
+                    Glide.with(this@ViewPetActivity)
                         .load(petImageUri)
                         .into(imageView_dog)
                 }
@@ -46,9 +44,9 @@ class VIewPetActivity : AppCompatActivity() {
             if (usuario != null) {
                 //carrega imagem do banco
                 val imageView_dono: ImageView = findViewById(R.id.img_view_pet_usuario)
-                val petImageUri = getUserImageUri(usuario.id)
+                val petImageUri = getUsuarioImg(usuario.id)
                 if (petImageUri != null) {
-                    Glide.with(this@VIewPetActivity)
+                    Glide.with(this@ViewPetActivity)
                         .load(petImageUri)
                         .into(imageView_dono)
                 }

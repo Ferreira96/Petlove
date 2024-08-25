@@ -16,11 +16,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.petlove.formularios.FormPetActivity
 import com.example.petlove.repository.deletePet
-import com.example.petlove.repository.getPetImageUri
-import com.google.firebase.database.FirebaseDatabase
+import com.example.petlove.repository.getPetImg
 import com.example.petlove.repository.getPets
 import com.example.petlove.repository.getUsuarioPorEmail
-import com.example.petlove.repository.updatePet
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -30,34 +28,31 @@ class MeusPetsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pets_my_list)
 
-        // Inicialize o Firebase e recupere o objeto Pet
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true)
+        // ???
+        //FirebaseDatabase.getInstance().setPersistenceEnabled(true)
 
-        //AÇÃO DO BOTÃO [MEUS PETS]
-        val btEntrar: Button = findViewById(R.id.bt_pets_my)
-        btEntrar.setOnClickListener {
-            val intent = Intent(this, FormPetActivity::class.java)
-            startActivity(intent)
+        //BOTÃO [NOVO PET]
+        findViewById<Button>(R.id.bt_pets_my).setOnClickListener {
+            startActivity(Intent(this, FormPetActivity::class.java))
         }
 
-        // Recupera dados do SharedPreferences
+
+        //SESSÃO
         val sessao = getSharedPreferences("sessao", Context.MODE_PRIVATE)
         val userEmail = sessao.getString("USER_EMAIL", null)
 
-
+        //CONFIGURA LISTA <_pet_my>
         CoroutineScope(Dispatchers.Main).launch {
-            //recupera id do usuario
+
+            //FILTRA ID USUARIO
             var id_usuario = 0
             if (userEmail != null) {
                 val usuario = getUsuarioPorEmail(userEmail)
-                id_usuario = usuario?.id ?: 0 // Acessa o campo 'id' do objeto Usuario, ou 0 se for null
+                id_usuario = usuario?.id ?: 0
             }
+            var pets = getPets().filter { it.usuario_id == id_usuario }
 
-            // Recupera a lista de pets de forma assíncrona
-            var pets = getPets()
-            pets = pets.filter { it.usuario_id == id_usuario }
-
-            // Atualiza o adapter da RecyclerView com a lista de pets
+            /*CONFIGURA LISTA <_pet_my>*/
             val listaPetAdocaoView = findViewById<RecyclerView>(R.id.list_pets_my)
             listaPetAdocaoView.adapter       = ListaMeusPets(this@MeusPetsActivity, pets)
             listaPetAdocaoView.layoutManager = LinearLayoutManager(this@MeusPetsActivity)
@@ -65,7 +60,7 @@ class MeusPetsActivity : AppCompatActivity() {
     }
 }
 
-//*** LISTA DE VIEW ***//
+//CONFIGURA LISTA <_pet_my>
 class ListaMeusPets(
     private val context: Context,
     private val pets: List<Pet>
@@ -73,6 +68,8 @@ class ListaMeusPets(
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun vincula(pet: Pet, context: Context) {
+
+            //CARREGA DADOS DO FIRESTORE
             val nome = itemView.findViewById<TextView>(R.id.tx_pet_operations_nome)
             nome.text = pet.nome
 
@@ -82,10 +79,10 @@ class ListaMeusPets(
             val peso = itemView.findViewById<TextView>(R.id.tx_pet_operations_peso)
             peso.text = pet.peso.toString() + "Kg"
 
-            //carrega imagem do banco
+            //CARREGA IMAGEM DO STORAGE
             CoroutineScope(Dispatchers.Main).launch {
                 val img_pet_user: ImageView = itemView.findViewById(R.id.img_pet_operations)
-                val petImageUri = getPetImageUri(pet.id)
+                val petImageUri = getPetImg(pet.id)
                 if (petImageUri != null) {
                     Glide.with(itemView)
                         .load(petImageUri)
@@ -96,7 +93,6 @@ class ListaMeusPets(
             //BOTAO [EDITAR]
             val botaoEditar = itemView.findViewById<ImageView>(R.id.bt_pet_operations_editar)
             botaoEditar.setOnClickListener {
-                /*envia a variavel adocao para AdocaoEDoacaoActivity*/
                 val intent = Intent(context, FormPetActivity::class.java)
                 intent.putExtra("petToUpdate_id", pet.id)
                 context.startActivity(intent)
@@ -105,26 +101,16 @@ class ListaMeusPets(
             //BOTAO [EXCLUIR]
             val botaoExcluir = itemView.findViewById<ImageView>(R.id.bt_pet_operations_excluir)
             botaoExcluir.setOnClickListener {
-                botaoExcluir(pet)
+                CoroutineScope(Dispatchers.Main).launch {
+                    deletePet(pet.id)
+                }
                 val intent = Intent(context, MeusPetsActivity::class.java)
                 context.startActivity(intent)
             }
         }
-
-        private fun botaoExcluir(pet: Pet) {
-            CoroutineScope(Dispatchers.Main).launch {
-                deletePet(pet.id)
-            }
-        }
-
-        private fun botaoEditar(pet: Pet) {
-            CoroutineScope(Dispatchers.Main).launch {
-                updatePet(pet)
-            }
-        }
     }
 
-    // CRIA O XML DOS OBJETOS
+    //OPERAÇOES BASICAS RecyclerView
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(context)
         val view = inflater.inflate(R.layout._pet_operations, parent, false)
@@ -139,5 +125,4 @@ class ListaMeusPets(
     override fun getItemCount(): Int {
         return pets.size
     }
-
 }

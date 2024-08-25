@@ -10,7 +10,7 @@ class MenuActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
 
-        //AÇÃO DO BOTÃO [MEUS PETS]
+        //AÇÃO DO BOTÃO [MEUS PETS].
         findViewById<Button>(R.id.bt_menu_meus).setOnClickListener {
             startActivity(Intent(this, MeusPetsActivity::class.java))
         }

@@ -31,7 +31,7 @@
         <activity android:name=".MenuActivity"></activity>
         <activity android:name=".formularios.FormPetActivity"></activity>
         <activity android:name=".AdocaoEDoacaoActivity"></activity>
-        <activity android:name=".VIewPetActivity"></activity>
+        <activity android:name=".ViewPetActivity"></activity>
         <activity android:name=".formularios.FormUserActivity"></activity>
         <activity android:name=".MeusPetsActivity"></activity>
 
