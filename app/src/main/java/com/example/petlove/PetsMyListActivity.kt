@@ -28,14 +28,10 @@ class MeusPetsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pets_my_list)
 
-        // ???
-        //FirebaseDatabase.getInstance().setPersistenceEnabled(true)
-
         //BOTÃO [NOVO PET]
         findViewById<Button>(R.id.bt_pets_my).setOnClickListener {
             startActivity(Intent(this, FormPetActivity::class.java))
         }
-
 
         //SESSÃO
         val sessao = getSharedPreferences("sessao", Context.MODE_PRIVATE)

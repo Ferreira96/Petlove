@@ -63,6 +63,32 @@
 
 
 
+    <EditText
+        android:id="@+id/lb_pets_operacoes_busca"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:background="@color/roxo"
+        android:ems="10"
+        android:fontFamily="@font/atma_semibold"
+        android:inputType="text"
+        android:text=""
+        android:textColor="@color/branco"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top" />
+
+    <Button
+        android:id="@+id/bt_pets_operacoes_busca"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:fontFamily="@font/atma_semibold"
+        android:text="Busca"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/lb_pets_operacoes_busca"
+        app:layout_constraintTop_toBottomOf="@+id/top" />
+
     <!-- LISTA DE ITEM_ADOCAO.XML  -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_pets_operacoes"
@@ -73,7 +99,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/top"
+        app:layout_constraintTop_toBottomOf="@+id/lb_pets_operacoes_busca"
         tools:listitem="@layout/_pet_my" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

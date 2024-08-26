@@ -25,19 +25,22 @@ class AdocaoEDoacaoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pets_operations_list)
 
-        // ???
-        //FirebaseDatabase.getInstance().setPersistenceEnabled(true)
-
         //RECUPERA VARIÁVEL DA INTENT
         val adocao = intent.getBooleanExtra("adocao", false)
         val doacao = intent.getBooleanExtra("doacao", false)
+
+        //BOTÃO [PESQUISA]
+        findViewById<Button>(R.id.bt_pets_operacoes_busca).setOnClickListener {
+            val intent = Intent(this, AdocaoEDoacaoActivity::class.java)
+            intent.putExtra("doacao", true)/*envia var*/
+            startActivity(intent)
+        }
 
         if (adocao) {
             findViewById<TextView>(R.id.tx_top).text = "Adoção"
         } else if (doacao) {
             findViewById<TextView>(R.id.tx_top).text = "Doação"
         }
-
 
         //CONFIGURA LISTA
         CoroutineScope(Dispatchers.Main).launch {
