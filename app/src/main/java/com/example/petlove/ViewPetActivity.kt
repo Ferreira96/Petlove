@@ -37,6 +37,7 @@ class ViewPetActivity : AppCompatActivity() {
                         .into(imageView_dog)
                 }
                 findViewById<TextView>(R.id.tx_view_pet_nome_pet).text = pet.nome
+                /*findViewById<TextView>(R.id.tx_view_pet_nome_especie).text = pet.especie*/
                 findViewById<TextView>(R.id._view_pet_pet_idade).text = "Idade: " + pet.idade.toString() + " Anos"
                 findViewById<TextView>(R.id.tx_view_pet_pet_peso).text  = "Peso: " +pet.peso.toString() + " Kg"
             }

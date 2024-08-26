@@ -24,15 +24,13 @@ suspend fun getUsuario(id: Int): Usuario? {
         val document = usuarioRef.get().await()
         if (document.exists()) {
             document.toObject(Usuario::class.java).also {
-                Log.d("UsuarioData", "Usuario data: $it")
+                /*OK*/
             }
         } else {
-            Log.d("UsuarioData", "No such document!")
-            null
+            null /*ERRO*/
         }
     } catch (exception: Exception) {
-        Log.w("UsuarioData", "Error getting document.", exception)
-        null
+        null /*ERRO*/
     }
 }
 
@@ -46,15 +44,13 @@ suspend fun getUsuarioPorEmail(email: String): Usuario? {
         if (!querySnapshot.isEmpty) {
             val document = querySnapshot.documents[0] // Assume que o e-mail é único
             document.toObject(Usuario::class.java).also {
-                Log.d("UsuarioData", "Usuario data: $it")
+                /*OK*/
             }
         } else {
-            Log.d("UsuarioData", "No such document!")
-            null
+            null /*ERRO*/
         }
     } catch (exception: Exception) {
-        Log.w("UsuarioData", "Error getting document.", exception)
-        null
+        null /*ERRO*/
     }
 }
 
@@ -66,11 +62,10 @@ suspend fun getUsuarios(): List<Usuario> {
         querySnapshot.documents.mapNotNull { document ->
             document.toObject(Usuario::class.java)
         }.also {
-            Log.d("UsuarioData", "Total usuarios: ${it.size}")
+            /*OK*/
         }
     } catch (exception: Exception) {
-        Log.w("UsuarioData", "Error getting documents.", exception)
-        emptyList()
+        emptyList()/*ERRO*/
     }
 }
 
@@ -98,10 +93,9 @@ suspend fun getUsuarioImg(id: Int): Uri? {
     return try {
         val downloadUrl = userImageRef.downloadUrl.await()
         Log.d("UserImage", "Image URI fetched successfully: $downloadUrl")
-        downloadUrl
+        downloadUrl /*OK*/
     } catch (exception: Exception) {
-        Log.w("UserImage", "Error fetching image URI.", exception)
-        null
+        null /*ERRO*/
     }
 }
 
@@ -109,19 +103,15 @@ suspend fun insertUsuarioImg(imageUri: Uri?): String? {
     if (imageUri == null) return null
 
     val maiorId = _maiorIdUsuario() ?: 0
-    /*val novoId = maiorId + 1*/
-
     val storageRef = FirebaseStorage.getInstance().reference
     val userImageRef = storageRef.child("usuarios/$maiorId.jpg")
 
     return try {
         userImageRef.putFile(imageUri).await()
         val downloadUrl = userImageRef.downloadUrl.await()
-        Log.d("UserImage", "Image uploaded successfully: $downloadUrl")
-        downloadUrl.toString()
+        downloadUrl.toString() /*OK*/
     } catch (exception: Exception) {
-        Log.w("UserImage", "Error uploading image.", exception)
-        null
+        null /*ERRO*/
     }
 }
 

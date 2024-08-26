@@ -37,6 +37,7 @@ class FormPetActivity : AppCompatActivity() {
                 val pet = getPet(petToUpdate_id)
                 pet?.let {
                     findViewById<TextView>(R.id.lb_form_pet_nome).text = it.nome
+                    findViewById<TextView>(R.id.lb_form_pet_especie).text = it.especie
                     findViewById<TextView>(R.id.lb_form_pet_idade).text = it.idade.toString()
                     findViewById<TextView>(R.id.lb_form_pet_peso).text = it.peso.toString()
                     findViewById<CheckBox>(R.id.cb_form_pet_adocao).isChecked = it.adocao
@@ -81,6 +82,7 @@ class FormPetActivity : AppCompatActivity() {
                         id         = petToUpdate_id,
                         usuario_id = getUsuarioPorEmail(email)?.id ?: 0,
                         nome       = findViewById<TextView>(R.id.lb_form_pet_nome).text.toString(),
+                        especie    = findViewById<TextView>(R.id.lb_form_pet_especie).text.toString(),
                         idade      = findViewById<TextView>(R.id.lb_form_pet_idade).text.toString().toIntOrNull() ?: 0,
                         peso       = findViewById<TextView>(R.id.lb_form_pet_peso).text.toString().toFloatOrNull() ?: 0f,
                         adocao     = findViewById<CheckBox>(R.id.cb_form_pet_adocao).isChecked,

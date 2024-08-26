@@ -115,20 +115,34 @@
         app:layout_constraintVertical_bias="0.422" />
 
     <TextView
+        android:id="@+id/tx_pet_my_especie"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="4dp"
+        android:fontFamily="@font/atma_semibold"
+        android:gravity="start|center"
+        android:text="Especie:"
+        android:textColor="@color/rosa_escuro"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/lb_form_pet_nome"
+        app:layout_constraintHorizontal_bias="0.62"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tx_pet_my_nome" />
+
+    <TextView
         android:id="@+id/tx_pet_my_idade"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="4dp"
         android:fontFamily="@font/atma_semibold"
         android:gravity="start|center"
         android:text="Idade:"
         android:textColor="@color/rosa_escuro"
         android:textSize="20dp"
         app:layout_constraintEnd_toStartOf="@+id/lb_form_pet_idade"
-        app:layout_constraintHorizontal_bias="0.607"
+        app:layout_constraintHorizontal_bias="0.62"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tx_pet_my_nome" />
+        app:layout_constraintTop_toBottomOf="@+id/tx_pet_my_especie" />
 
     <TextView
         android:id="@+id/tx_pet_my_peso"
@@ -162,6 +176,19 @@
         app:layout_constraintVertical_bias="0.422" />
 
     <EditText
+        android:id="@+id/lb_form_pet_especie"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="28dp"
+        android:ems="10"
+        android:fontFamily="@font/atma_semibold"
+        android:inputType="text"
+        android:text=""
+        android:textColor="@color/roxo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lb_form_pet_nome" />
+
+    <EditText
         android:id="@+id/lb_form_pet_peso"
         android:layout_width="250dp"
         android:layout_height="50dp"
@@ -187,7 +214,7 @@
         android:text=""
         android:textColor="@color/roxo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lb_form_pet_nome" />
+        app:layout_constraintTop_toBottomOf="@+id/lb_form_pet_especie" />
 
     <CheckBox
         android:id="@+id/cb_form_pet_adocao"

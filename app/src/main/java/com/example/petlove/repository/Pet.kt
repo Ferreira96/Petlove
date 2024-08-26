@@ -11,6 +11,7 @@ data class Pet(
     var id        : Int = 0,
     val usuario_id: Int = 0,
     val nome      : String = "",
+    val especie   : String = "",
     val idade     : Int = 0,
     val peso      : Float = 0f,
     val adocao    : Boolean = false,
@@ -27,12 +28,13 @@ suspend fun getPet(id: Int): Pet? {
         val document = petRef.get().await()
         if (document.exists()) {
             document.toObject(Pet::class.java).also {
+                /*OK*/
             }
         } else {
-            null
+            null /*ERRO*/
         }
     } catch (exception: Exception) {
-        null
+        null /*ERRO*/
     }
 }
 
@@ -41,10 +43,10 @@ suspend fun getPets(): List<Pet> {
     return try {
         val querySnapshot = db.collection("pets").get().await()
         querySnapshot.documents.mapNotNull { document ->
-            document.toObject(Pet::class.java)
+            document.toObject(Pet::class.java)/*OK*/
         }
     } catch (exception: Exception) {
-        emptyList()
+        emptyList() /*ERRO*/
     }
 }
 
@@ -56,9 +58,9 @@ suspend fun insertPet(pet: Pet): Boolean {
         pet.id = novoId
 
         db.collection("pets").document(novoId.toString()).set(pet).await()
-        true
+        true /*OK*/
     } catch (exception: Exception) {
-        false
+        false /*ERRO*/
     }
 }
 
@@ -67,9 +69,9 @@ suspend fun updatePet(pet: Pet): Boolean {
 
     return try {
         db.collection("pets").document(pet.id.toString()).set(pet).await()
-        true
+        true /*OK*/
     } catch (exception: Exception) {
-        false
+        false/*ERRO*/
     }
 }
 
@@ -78,11 +80,9 @@ suspend fun deletePet(id: Int): Boolean {
 
     return try {
         db.collection("pets").document(id.toString()).delete().await()
-        Log.d("PetData", "Pet with ID $id deleted successfully.")
-        true
+        true /*OK*/
     } catch (exception: Exception) {
-        Log.w("PetData", "Error deleting pet with ID $id.", exception)
-        false
+        false /*ERRO*/
     }
 }
 
@@ -94,9 +94,9 @@ suspend fun getPetImg(id: Int): Uri? {
 
     return try {
         val downloadUrl = petImageRef.downloadUrl.await()
-        downloadUrl
+        downloadUrl /*OK*/
     } catch (exception: Exception) {
-        null
+        null /*ERRO*/
     }
 }
 
@@ -104,7 +104,6 @@ suspend fun insertPetImg(imageUri: Uri?): String? {
     if (imageUri == null) return null
 
     val maiorId = _maiorIdPet() ?: 0
-    /*val novoId  = maiorId + 1*/
 
     val storageRef = FirebaseStorage.getInstance().reference
     val petImageRef = storageRef.child("pets/$maiorId.jpg")
@@ -112,9 +111,9 @@ suspend fun insertPetImg(imageUri: Uri?): String? {
     return try {
         petImageRef.putFile(imageUri).await()
         val downloadUrl = petImageRef.downloadUrl.await()
-        downloadUrl.toString()
+        downloadUrl.toString()/*OK*/
     } catch (exception: Exception) {
-        null
+        null /*ERRO*/
     }
 }
 
