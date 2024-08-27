@@ -1,6 +1,5 @@
 package com.example.petlove
 
-import com.example.petlove.repository.Pet
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -14,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.petlove.repository.Pet
 import com.example.petlove.repository.getPetImg
 import com.example.petlove.repository.getPets
 import kotlinx.coroutines.CoroutineScope
@@ -28,11 +28,16 @@ class AdocaoEDoacaoActivity : AppCompatActivity() {
         //RECUPERA VARIÁVEL DA INTENT
         val adocao = intent.getBooleanExtra("adocao", false)
         val doacao = intent.getBooleanExtra("doacao", false)
+        var busca  = intent.getStringExtra("busca")
 
-        //BOTÃO [PESQUISA]
+        //BOTÃO [BUSCA]
         findViewById<Button>(R.id.bt_pets_operacoes_busca).setOnClickListener {
             val intent = Intent(this, AdocaoEDoacaoActivity::class.java)
-            intent.putExtra("doacao", true)/*envia var*/
+            val lb_pets_operacoes_busca = findViewById<TextView>(R.id.lb_pets_operacoes_busca).text.toString()
+
+            if(adocao){intent.putExtra("adocao", true)/*envia var*/}
+            if(adocao){intent.putExtra("doacao", true)/*envia var*/}
+            intent.putExtra("busca", lb_pets_operacoes_busca)/*envia var*/
             startActivity(intent)
         }
 
@@ -45,12 +50,19 @@ class AdocaoEDoacaoActivity : AppCompatActivity() {
         //CONFIGURA LISTA
         CoroutineScope(Dispatchers.Main).launch {
 
-            //FILTRA ADOCAO/DOACAO
+            //FILTROS
             var pets = getPets()
+
             if(adocao){
                 pets = pets.filter { it.adocao }
             }else if (doacao) {
                 pets = pets.filter { it.doacao }
+            }
+
+            if (!busca.isNullOrEmpty()) {
+                pets = pets.filter { pet ->
+                    pet.nome.contains(busca, ignoreCase = true)
+                }
             }
 
             /*CONFIGURA LISTA  <_pet_operations>*/
