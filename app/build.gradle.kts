@@ -53,7 +53,7 @@ dependencies {
     implementation(libs.firebase.firestore.ktx)
     implementation(libs.firebase.storage.ktx)
     implementation(platform(libs.firebase.bom))
-    //carrega imagem do banco
     implementation("com.github.bumptech.glide:glide:4.15.1")
     kapt("com.github.bumptech.glide:compiler:4.15.1")
+    implementation("androidx.drawerlayout:drawerlayout:1.1.1")
 }

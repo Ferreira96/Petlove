@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_meus_pets"
+        android:title="Meus Pets" />
+    <item
+        android:id="@+id/nav_adocao"
+        android:title="Adoção" />
+    <item
+        android:id="@+id/nav_doacao"
+        android:title="Doação" />
+</menu>
