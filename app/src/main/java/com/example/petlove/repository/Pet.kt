@@ -1,7 +1,6 @@
 package com.example.petlove.repository
 
 import android.net.Uri
-import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.tasks.await
@@ -114,6 +113,25 @@ suspend fun insertPetImg(imageUri: Uri?): String? {
         downloadUrl.toString()/*OK*/
     } catch (exception: Exception) {
         null /*ERRO*/
+    }
+}
+
+suspend fun updateImgPet(id: Int, imageUri: Uri? = null): Boolean {
+    val db = FirebaseFirestore.getInstance()
+    val storageRef = FirebaseStorage.getInstance().reference
+    val petRef = db.collection("pets").document(id.toString())
+
+    return try {
+        if (imageUri != null) {
+            val petImageRef = storageRef.child("pets/$id.jpg")
+            petImageRef.putFile(imageUri).await()
+            val downloadUrl = petImageRef.downloadUrl.await().toString()
+            petRef.update("image_url", downloadUrl).await()
+        }
+        petRef.update("image_uri", imageUri.toString()).await()
+        true /* OK */
+    } catch (exception: Exception) {
+        false /* ERRO */
     }
 }
 
