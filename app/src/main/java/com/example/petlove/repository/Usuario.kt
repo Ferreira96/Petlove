@@ -11,7 +11,8 @@ data class Usuario(
     var id: Int = 0,
     val nome: String = "",
     val email: String = "",
-    val celular: String = ""
+    val celular: String = "",
+    val cpf: String = ""
 )
 
 

@@ -101,6 +101,22 @@
         app:layout_constraintVertical_bias="0.439" />
 
     <TextView
+        android:id="@+id/tx_form_user_cpf"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/atma_semibold"
+        android:gravity="start|center"
+        android:text="CPF:"
+        android:textColor="@color/rosa_escuro"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/lb_form_user_celular"
+        app:layout_constraintHorizontal_bias="0.805"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tx_form_user_nome" />
+
+    <TextView
         android:id="@+id/tx_form_user_celular"
         android:layout_width="100dp"
         android:layout_height="50dp"
@@ -114,7 +130,7 @@
         app:layout_constraintEnd_toStartOf="@+id/lb_form_user_celular"
         app:layout_constraintHorizontal_bias="0.805"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tx_form_user_nome" />
+        app:layout_constraintTop_toBottomOf="@+id/tx_form_user_cpf" />
 
     <TextView
         android:id="@+id/tx_form_user_email"
@@ -178,7 +194,7 @@
         app:layout_constraintTop_toBottomOf="@+id/lb_form_user_email" />
 
     <EditText
-        android:id="@+id/lb_form_user_celular"
+        android:id="@+id/lb_form_user_cpf"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:layout_marginTop="4dp"
@@ -190,6 +206,20 @@
         android:fontFamily="@font/atma_semibold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lb_form_user_nome" />
+
+    <EditText
+        android:id="@+id/lb_form_user_celular"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="20dp"
+        android:ems="10"
+        android:inputType="text"
+        android:textColor="@color/roxo"
+        android:text=""
+        android:fontFamily="@font/atma_semibold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lb_form_user_cpf" />
 
     <EditText
         android:id="@+id/lb_form_user_email"
@@ -215,8 +245,6 @@
         app:layout_constraintBottom_toTopOf="@+id/bottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lb_form_user_senha"
-        app:layout_constraintVertical_bias="0.403" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

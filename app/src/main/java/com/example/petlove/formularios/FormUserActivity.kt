@@ -2,6 +2,7 @@ package com.example.petlove.formularios
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
@@ -46,17 +47,26 @@ class FormUserActivity : AppCompatActivity() {
         findViewById<Button>(R.id.txbt_form_user_salvar).setOnClickListener launch@{
             val cad_email = findViewById<EditText>(R.id.lb_form_user_email).text.toString()
             val cad_senha = findViewById<EditText>(R.id.lb_form_user_senha).text.toString()
+            val cad_cpf   = findViewById<EditText>(R.id.lb_form_user_senha).text.toString()
+
 
             val novoUsuario = Usuario(
-                id = 0,
-                nome = findViewById<EditText>(R.id.lb_form_user_nome).text.toString(),
-                email = findViewById<EditText>(R.id.lb_form_user_email).text.toString(),
-                celular = findViewById<EditText>(R.id.lb_form_user_celular).text.toString()
+                id      = 0,
+                nome    = findViewById<EditText>(R.id.lb_form_user_nome).text.toString(),
+                email   = findViewById<EditText>(R.id.lb_form_user_email).text.toString(),
+                celular = findViewById<EditText>(R.id.lb_form_user_celular).text.toString(),
+                cpf     = findViewById<EditText>(R.id.lb_form_user_cpf).text.toString()
             )
 
             //VALIDA CAMPOS
-            if (cad_email.isNotEmpty() || cad_senha.isNotEmpty()) {
+            if (!cad_email.isNotEmpty() || !cad_senha.isNotEmpty()) {
                 Toast.makeText(baseContext, "Senha e email devem estar preenchidos", Toast.LENGTH_SHORT).show()
+                return@launch
+            }
+
+            if (!validaCpf(cad_cpf)) {
+                //findViewById<EditText>(R.id.lb_form_user_cpf).setBackgroundColor(Color.RED)
+                Toast.makeText(baseContext, "CPF inválido", Toast.LENGTH_SHORT).show()
                 return@launch
             }
 
@@ -80,6 +90,14 @@ class FormUserActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun validaCpf(cadCpf: String): Boolean {
+        val cpf = cadCpf.filter { it.isDigit() }
+        if (cpf.length != 11) {
+            return false
+        }
+        return true
     }
 }
 
