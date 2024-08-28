@@ -70,10 +70,10 @@ class ListaMeusPets(
             nome.text = pet.nome
 
             val idade = itemView.findViewById<TextView>(R.id.tx_pet_operations_idade)
-            idade.text = pet.idade.toString() + "Anos"
+            idade.text = pet.idade.toString() + " Anos"
 
             val peso = itemView.findViewById<TextView>(R.id.tx_pet_operations_peso)
-            peso.text = pet.peso.toString() + "Kg"
+            peso.text = pet.peso.toString() + " Kg"
 
             //CARREGA IMAGEM DO STORAGE
             CoroutineScope(Dispatchers.Main).launch {

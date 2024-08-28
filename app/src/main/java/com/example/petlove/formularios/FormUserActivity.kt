@@ -93,11 +93,12 @@ class FormUserActivity : AppCompatActivity() {
     }
 
     private fun validaCpf(cadCpf: String): Boolean {
-        val cpf = cadCpf.filter { it.isDigit() }
-        if (cpf.length != 11) {
-            return false
-        }
-        return true
+//        val cpf = cadCpf.filter { it.isDigit() }
+//        if (cpf.length != 11) {
+//            return false
+//        }
+//        return true
+        return false
     }
 }
 
