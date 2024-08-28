@@ -28,6 +28,12 @@ class MeusPetsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pets_my_list)
 
+        //BOTAO [HOME]
+        val botaoHome = findViewById<ImageView>(R.id.img_pet_my)
+        botaoHome.setOnClickListener {
+            startActivity(Intent(this, MenuActivity::class.java))
+        }
+
         //BOTÃO [NOVO PET]
         findViewById<Button>(R.id.bt_pets_my).setOnClickListener {
             startActivity(Intent(this, FormPetActivity::class.java))

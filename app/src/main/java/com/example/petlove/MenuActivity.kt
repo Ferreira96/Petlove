@@ -1,5 +1,6 @@
 package com.example.petlove
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -40,6 +41,14 @@ class MenuActivity : AppCompatActivity() {
                 R.id.nav_doacao -> {
                     val intent = Intent(this, AdocaoEDoacaoActivity::class.java)
                     intent.putExtra("doacao", true)
+                    startActivity(intent)
+                }
+                R.id.nav_sair -> {
+                    //SESSÃO
+                    val sessao = getSharedPreferences("sessao", Context.MODE_PRIVATE)
+                    sessao.edit().putString( "USER_EMAIL", "").apply()
+                    sessao.edit().putBoolean("IS_LOGGED" , false).apply()
+                    val intent = Intent(this, LoginActivity::class.java)
                     startActivity(intent)
                 }
             }

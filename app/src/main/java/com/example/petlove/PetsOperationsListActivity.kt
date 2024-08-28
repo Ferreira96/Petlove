@@ -25,6 +25,12 @@ class AdocaoEDoacaoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pets_operations_list)
 
+        //BOTAO [HOME]
+        val botaoHome = findViewById<ImageView>(R.id.img_pet_my)
+        botaoHome.setOnClickListener {
+            startActivity(Intent(this, MenuActivity::class.java))
+        }
+
         //RECUPERA VARIÁVEL DA INTENT
         val adocao = intent.getBooleanExtra("adocao", false)
         val doacao = intent.getBooleanExtra("doacao", false)

@@ -47,7 +47,7 @@ class FormUserActivity : AppCompatActivity() {
         findViewById<Button>(R.id.txbt_form_user_salvar).setOnClickListener launch@{
             val cad_email = findViewById<EditText>(R.id.lb_form_user_email).text.toString()
             val cad_senha = findViewById<EditText>(R.id.lb_form_user_senha).text.toString()
-            val cad_cpf   = findViewById<EditText>(R.id.lb_form_user_senha).text.toString()
+            val cad_cpf   = findViewById<EditText>(R.id.lb_form_user_cpf).text.toString()
 
 
             val novoUsuario = Usuario(
@@ -93,12 +93,11 @@ class FormUserActivity : AppCompatActivity() {
     }
 
     private fun validaCpf(cadCpf: String): Boolean {
-//        val cpf = cadCpf.filter { it.isDigit() }
-//        if (cpf.length != 11) {
-//            return false
-//        }
-//        return true
-        return false
+        val cpf = cadCpf.filter { it.isDigit() }
+        if (cpf.length != 11) {
+            return false
+        }
+        return true
     }
 }
 

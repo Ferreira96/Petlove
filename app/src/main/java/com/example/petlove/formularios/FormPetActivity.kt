@@ -89,13 +89,12 @@ class FormPetActivity : AppCompatActivity() {
                         doacao = findViewById<CheckBox>(R.id.cb_form_pet_doacao).isChecked
                     )
 
-                    /*
+
                     //VALIDA CAMPOS
                     if (imageUri == null) {
                         Toast.makeText(baseContext, "Selecione uma imagem para o pet", Toast.LENGTH_SHORT).show()
                         return@launch
                     }
-                    */
 
 
                     //PET INSERT

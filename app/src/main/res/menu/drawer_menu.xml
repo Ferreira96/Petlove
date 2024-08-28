@@ -8,4 +8,7 @@
     <item
         android:id="@+id/nav_doacao"
         android:title="Doação" />
+    <item
+        android:id="@+id/nav_sair"
+        android:title="Sair" />
 </menu>
