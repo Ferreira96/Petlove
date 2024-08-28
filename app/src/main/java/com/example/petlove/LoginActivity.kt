@@ -46,6 +46,8 @@ class LoginActivity : AppCompatActivity() {
 
                 //INTENT
                 startActivity(Intent(this, MenuActivity::class.java))
+            }else{
+                Toast.makeText(baseContext, "Senha ou usuario incorretos", Toast.LENGTH_SHORT).show()
             }
         }
     }
